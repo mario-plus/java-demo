@@ -16,6 +16,7 @@
         <module>disruptor</module>
         <module>exception</module>
         <module>retry</module>
+        <module>mysql</module>
     </modules>
 
 
