@@ -3,6 +3,7 @@ dubbo:
     name: dubbo-consumer
   registry:
     address: zookeeper://127.0.0.1:2181
+    register: false
   protocol:
     name: dubbo
     port: -1

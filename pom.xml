@@ -17,6 +17,7 @@
         <module>exception</module>
         <module>retry</module>
         <module>mysql</module>
+        <module>abr</module>
     </modules>
 
 

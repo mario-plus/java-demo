@@ -19,9 +19,9 @@ public class ProcessServiceImpl {
 
     /**
      * 启动后直接调用
-     * */
+     */
     @PostConstruct
-    public void process()  {
+    public void process() {
         Object o = businessService.doBusiness("dsfjdjfkdlfhkd");
         System.out.println(o.toString());
 
