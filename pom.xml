@@ -23,6 +23,7 @@
         <module>retry</module>
         <module>mysql</module>
         <module>abr</module>
+        <module>netty</module>
     </modules>
 
 
