@@ -1,76 +1,14 @@
 package com.mario.client.utils;
 
-import com.mario.client.bo.ByteSplit;
-import com.mario.client.bo.BytesType;
-
-import java.util.Comparator;
-import java.util.List;
-import java.util.stream.Collectors;
-
 /**
  * @author zxz
  * @date 2023年03月07日 17:47
  */
 public class ByteUtil {
 
-    public static boolean checkSplitRule(List<ByteSplit> byteSplits, String content) {
-        if (byteSplits.isEmpty()) {
-            return false;
-        }
-        List<ByteSplit> collect = orderSplitRule(byteSplits);
-        ByteSplit byteSplit = collect.get(collect.size() - 1);
-        if (content.length() < (byteSplit.getStartIndex() + byteSplit.getLength())) {
-            return false;//字符串长度小于切割长度
-        }
-        if (collect.size() < 2) {
-            return true;
-        }
-        for (int i = 0; i < collect.size() - 1; i++) {
-            ByteSplit before = collect.get(i);
-            ByteSplit after = collect.get(i + 1);
-            if (before.getStartIndex() > after.getStartIndex()
-                    || (before.getStartIndex() + before.getLength() > after.getStartIndex())) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    protected static List<ByteSplit> orderSplitRule(List<ByteSplit> byteSplits) {
-        return byteSplits
-                .stream()
-                .sorted(Comparator.comparing(ByteSplit::getStartIndex).reversed())
-                .collect(Collectors.toList());
-    }
-
-
-    public static List<ByteSplit> doSplitByte(List<ByteSplit> byteSplits, String content) {
-        orderSplitRule(byteSplits).forEach(e -> {
-            String value = content.substring(e.getStartIndex(), e.getStartIndex() + e.getLength());
-            e.setValue(formatValue(value, e.getType()));
-            System.out.println("模型数据：" + e);
-        });
-        return byteSplits;
-    }
-
     /**
-     * 格式化数据
-     */
-    protected static String formatValue(String value, Integer type) {
-        if (type.equals(BytesType.TYPE_IP)) {
-            return formatValueToIp(value);
-        } else if (type.equals(BytesType.TYPE_HEX_TO_DEC)
-                || type.equals(BytesType.TYPE_HEX_TO_DEC_HIGH)
-                || type.equals(BytesType.TYPE_HEX_TO_DEC_LOW)) {
-            return formatValueToDEC(value, type);
-        } else if (type.equals(BytesType.TYPE_HEX_TO_FLOAT_LOW)) {
-            return formatValueToDecFloat(value);
-        }
-        return value;
-    }
-
-
-    //8位16进制字符串，转10进制字符串IP
+     * 8位16进制(高字节在前)字符串，转10进制字符串IP
+     * */
     protected static String formatValueToIp(String value) {
         if (value.length() > 8) {
             return value;
@@ -98,15 +36,15 @@ public class ByteUtil {
 
 
     /**
-     * 1字节，2字节（高八位，低八位），16进制转10进制整形
+     * 16进制转10进制整形
+     * @param type  3：高字节在前     其他：低字节在前
      */
     protected static String formatValueToDEC(String value, Integer type) {
-        if (value.length() == 2 || type.equals(BytesType.TYPE_HEX_TO_DEC_HIGH)) {//1字节
+        if (value.length() == 2 || type==3) {//1字节
             return Integer.valueOf(value, 16).toString();
         } else {
-            String start = value.substring(0, 2);
-            String end = value.substring(2, 4);
-            return Integer.valueOf(end + start, 16).toString();
+            //高低位转换
+            return Integer.valueOf(exchangeBytes(value), 16).toString();
         }
     }
 
@@ -127,12 +65,12 @@ public class ByteUtil {
         if (value.length() % 2 != 0) {
             return value;
         }
-        String content = "";
+        StringBuilder content = new StringBuilder();
         for (int i = 0; i < value.length() / 2; i++) {
             String substring = value.substring(2 * i, 2 * (i + 1));
-            content = substring + content;
+            content.insert(0, substring);
         }
-        return content;
+        return content.toString();
     }
 
     /**
@@ -140,7 +78,7 @@ public class ByteUtil {
      */
     public static String floatTo4BytesLow(float value) {
         String s = Integer.toHexString(Float.floatToIntBits(Float.parseFloat(String.valueOf(value))));
-        if ("0".equals(s)){
+        if ("0".equals(s)) {
             return "00000000";
         }
         return exchangeBytes(s);
@@ -164,21 +102,50 @@ public class ByteUtil {
 
 
     /**
-     * 十进制转16进制低字节
+     * 16进制转字节数组
      */
-    public static String decToByteLow(int num) {
-        String value = Integer.toHexString(num);
-        if (value.length() % 2 != 0) {
-            value = "0" + value;
+    public static byte[] Hex2Bytes(String hexString) {
+        byte[] arrB = hexString.getBytes();
+        int iLen = arrB.length;
+        byte[] arrOut = new byte[iLen / 2];
+        String strTmp = null;
+        for (int i = 0; i < iLen; i += 2) {
+            strTmp = new String(arrB, i, 2);
+            arrOut[(i / 2)] = ((byte) Integer.parseInt(strTmp, 16));
         }
-        return exchangeBytes(value);
+        return arrOut;
+    }
+
+
+    public static String replaceChar(String resource, Integer index, String rep) {
+        if (resource.length() < index + rep.length()) {
+            return resource;
+        }
+        StringBuilder stringBuilder = new StringBuilder();
+        String start = resource.substring(0, index);
+        String end = resource.substring(index + rep.length());
+        stringBuilder.append(start).append(rep).append(end);
+        return stringBuilder.toString();
+    }
+
+
+    /**
+     * 10进制转16进制，高位补0
+     */
+    public static String decToHex(Integer num, Integer length) {
+        return String.format("%0" + length + "x", (long) num);
+    }
+
+    /**
+     * 10进制转16进制，低位补0
+     */
+    public static String decToHexLow(Integer num, Integer length) {
+        String format = String.format("%0" + length + "x", (long) num);
+        return exchangeBytes(format);
     }
 
 
     public static void main(String[] args) {
-        String s = floatTo4BytesLow((float) 0.0);
-        System.out.println(s);
+
     }
-
-
 }

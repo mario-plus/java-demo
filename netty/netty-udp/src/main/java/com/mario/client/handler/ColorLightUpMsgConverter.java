@@ -3,6 +3,7 @@ package com.mario.client.handler;
 import com.mario.client.bo.ByteSplit;
 import com.mario.client.bo.BytesType;
 import com.mario.client.bo.ColorLightConstants;
+import com.mario.client.utils.ColorLightByteUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,20 +12,17 @@ import java.util.List;
  * @author zxz
  * @date 2023年03月07日 10:55
  */
-public class ColorLightUpMsgConverter implements ByteSplitService {
+public class ColorLightUpMsgConverter extends ByteSplitService {
 
-//    public static void main(String[] args) {
-//        String s="3f000000";
-//        Long l = Long.parseLong(s, 16);
-//        Float f = Float.intBitsToFloat(l.intValue());
-//        System.out.println(f);
-//
-//        //float转十六进制字符串
-//        Float g= (float) (0.5);
-//        String value= Integer.toHexString(Float.floatToIntBits(g));
-//        System.out.println(value);
-//
-//    }
+
+    @Override
+    protected List<ByteSplit> splitBytes(List<ByteSplit> byteSplits, String content) {
+        if (!ColorLightByteUtil.checkSplitRule(byteSplits, content)) {
+            //规则解析异常
+        }
+        return ColorLightByteUtil.doSplitByte(byteSplits, content);
+    }
+
 
     public void converterMsg(String content) {
         List<ByteSplit> byteSplits;
@@ -87,6 +85,8 @@ public class ColorLightUpMsgConverter implements ByteSplitService {
         byteSplits.add(new ByteSplit(233 * bit, bit, "bright_int", "亮度整数值"));
         return splitBytes(byteSplits, content);
     }
+
+
 
 
 }

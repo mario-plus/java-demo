@@ -2,6 +2,7 @@ package com.mario.client;
 
 import com.mario.client.handler.UdpClientHandler;
 import com.mario.client.utils.ByteUtil;
+import com.mario.client.utils.ColorLightByteUtil;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
@@ -20,72 +21,124 @@ import io.netty.util.internal.SocketUtils;
  * @date 2023年03月02日 15:53
  */
 public class UdpClient {
+    static final Integer bit = 2;
 
     static final int PORT = Integer.parseInt(System.getProperty("port", "9099"));
     static Channel channel;
 
-    static String setDevCT = "2200120000000000ff000000000000008813";//设置色温，ff前两位，表示设备序号，后两位表示色温1388==>5000（范围2000-10000）
-
-    static String save = "1000110000000000ff0000000000000001";//保存设置，ff前两位，表示设备序号
-
-    static String getDevProperty = "0100110000000000ff0000000000010016";//查询设备属性
-
-    static String setDevBright = "2100140000000000ff000000000000000000003f";//ff前两位表示设备序号，后四位表示亮度值（0-100）
-
 
     public static void main(String[] args) throws Exception {
 
-        //setDevBright((float) 0.7); //百分比40%,0%息屏
 
-        //setDevCT(6666);
-
-        getDevProperty();
-    }
-
-    public static void searchDev() {
-        new Thread(() -> {  //探测设备
-            try {
-                send(0, "EB0000090155EECC00");
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }).start();
-    }
-
-    public static void getDevProperty() {
-        new Thread(() -> {    //设备属性
-            try {
-                send(0, getDevProperty);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }).start();
-    }
-
-    public static void setDevCT(int ct) {//设置设备色温2000-10000
         new Thread(() -> {
+
             try {
-                String s1 = setDevCT.substring(0, setDevCT.length() - 4) + ByteUtil.decToByteLow(ct);
-                send(0, s1);
-                System.out.println("设置设备色温：" + s1);
+                sendRandomPort(getDevBrightContent(0, 88));
+
+                sendRandomPort(getDevCTContent(0, 4000));
+
+                sendRandomPort(getPropertyContent(0));
+
+                sendRandomPort(getDevSearchContent());
+
+               sendRandomPort(getDevStopOrStart(0, 0));
+
+                sendRandomPort(getSaveContent(0));
+
+                sendRandomPort(getEnableContent(0, true));
+
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }).start();
     }
 
-    public static void setDevBright(float num) {//百分比亮度
-        new Thread(() -> {    //设置设备亮度
-            try {
-                String s1 = setDevBright.substring(0, setDevBright.length() - 8) + ByteUtil.floatTo4BytesLow(num);
-                System.out.println("设置设备亮度：" + s1);
-                send(0, s1);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }).start();
+
+    public static String getDevSearchContent() {
+        return "EB0000090155EECC00";
     }
 
+    /**
+     * 信号源使能
+     *
+     * @param enable true:允许输入，false:禁止输入
+     */
+    public static String getEnableContent(Integer devNum, boolean enable) {
+        //信号源使能
+        String res = "1100110000000000ff0000000000000000";//（1显示，0不显示）
+        String s = replaceDev(devNum, res);
+        return ByteUtil.replaceChar(s, s.length() - bit, ByteUtil.decToHexLow(enable ? 1 : 0, bit));
+    }
+
+
+    /**
+     * 保存配置
+     *
+     * @param devNum 设备编号，等于0时，广播所有设备
+     */
+    public static String getSaveContent(Integer devNum) {
+        String save = "1000110000000000ff0000000000000001";//保存设置，ff前两位，表示设备序号
+        return replaceDev(devNum, save);
+    }
+
+
+    /**
+     * 锁屏、解锁
+     *
+     * @param devNum 设备编号，等于0时，广播所有设备
+     * @param state  0不冻结，1冻结
+     */
+    public static String getDevStopOrStart(Integer devNum, Integer state) {
+        //锁屏，解锁
+        //                    1200110000000000ff0000000000000000
+        String startOrStop = "1200110000000000ff0000000000000000";//ff前两位表示设备序列号，后一位表示1冻结，0不冻结
+        String content = replaceDev(devNum, startOrStop);
+        return ByteUtil.replaceChar(content, content.length() - bit, ByteUtil.decToHexLow(state, bit));
+    }
+
+
+    /**
+     * @param devNum 设备编号，等于0时，广播所有设备
+     */
+    public static String getPropertyContent(Integer devNum) {
+        //查询设备属性
+        String getDevProperty = "0100110000000000ff0000000000010016";//查询设备属性，ff前两位，表示设备序号
+        return replaceDev(devNum, getDevProperty);
+    }
+
+
+    /**
+     * @param devNum      设备编号，等于0时，广播所有设备
+     * @param brightRadio 0%-100%
+     */
+    public static String getDevBrightContent(Integer devNum, float brightRadio) {//百分比亮度
+        //设置亮度
+        String setDevBright = "2100140000000000ff000000000000000000003f";//ff前两位表示设备序号，后四位表示亮度值（0-100）
+        String content = replaceDev(devNum, setDevBright);
+        return ByteUtil.replaceChar(content, content.length() - 4 * bit, ByteUtil.floatTo4BytesLow(brightRadio));
+    }
+
+
+    /**
+     * @param devNum 设备编号，等于0时，广播所有设备
+     * @param ct     色温（2000-10000）
+     */
+    public static String getDevCTContent(Integer devNum, int ct) {//设置设备色温2000-10000
+        //设置色温
+        String setDevCT = "2200120000000000ff000000000000008813";//设置色温，ff前两位，表示设备序号，后两位表示色温1388==>5000（范围2000-10000）
+        String content = replaceDev(devNum, setDevCT);
+        return ByteUtil.replaceChar(content, content.length() - 2 * bit, ByteUtil.decToHexLow(ct, 2 * bit));
+    }
+
+
+    public static String replaceDev(Integer devNum, String content) {
+        return ByteUtil.replaceChar(content, 12, ColorLightByteUtil.allocateDev(devNum));
+    }
+
+
+    private static void sendRandomPort(String hex) throws InterruptedException {
+        send(0, hex);
+    }
 
     private static void send(Integer port, String hex) throws InterruptedException {
         EventLoopGroup group = new NioEventLoopGroup();
@@ -110,23 +163,11 @@ public class UdpClient {
     }
 
     public static void doSendMsg(String hex) throws InterruptedException {
-        ByteBuf buf = Unpooled.wrappedBuffer(Hex2Bytes(hex));//"EB0000090155EECC00"
+        System.out.println("下行指令：" + hex);
+        ByteBuf buf = Unpooled.wrappedBuffer(ByteUtil.Hex2Bytes(hex));
         channel.writeAndFlush(new DatagramPacket(
                 buf,
                 SocketUtils.socketAddress("10.3.52.243", 9099))).sync();//端口为0，自动分配闲置端口
-    }
-
-
-    public static byte[] Hex2Bytes(String hexString) {
-        byte[] arrB = hexString.getBytes();
-        int iLen = arrB.length;
-        byte[] arrOut = new byte[iLen / 2];
-        String strTmp = null;
-        for (int i = 0; i < iLen; i += 2) {
-            strTmp = new String(arrB, i, 2);
-            arrOut[(i / 2)] = ((byte) Integer.parseInt(strTmp, 16));
-        }
-        return arrOut;
     }
 
 
