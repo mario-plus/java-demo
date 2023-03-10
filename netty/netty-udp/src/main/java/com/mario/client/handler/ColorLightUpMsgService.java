@@ -12,7 +12,7 @@ import java.util.List;
  * @author zxz
  * @date 2023年03月07日 10:55
  */
-public class ColorLightUpMsgConverter extends ByteSplitService {
+public class ColorLightUpMsgService extends ByteSplitService {
 
 
     @Override

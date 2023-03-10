@@ -11,12 +11,12 @@ import io.netty.channel.socket.DatagramPacket;
  * @date 2023年03月02日 15:56
  */
 public class UdpClientHandler extends SimpleChannelInboundHandler<DatagramPacket> {
-    static ColorLightUpMsgConverter colorLightUpMsgConverter;
+    static ColorLightUpMsgService colorLightUpMsgService;
 
 
 
     static {
-        colorLightUpMsgConverter = new ColorLightUpMsgConverter();
+        colorLightUpMsgService = new ColorLightUpMsgService();
     }
 
     @Override
@@ -25,10 +25,8 @@ public class UdpClientHandler extends SimpleChannelInboundHandler<DatagramPacket
         byte[] bytes = new byte[content.readableBytes()];
         content.readBytes(bytes);
         String s = ByteUtil.byte2HexWithBlank(bytes).replace(" ","");
-
         System.out.println("客户端接收到消息:" + s);
-        System.out.println("数据长度："+(s.length()/2));
-        colorLightUpMsgConverter.converterMsg(ByteUtil.byte2HexWithBlank(bytes).replace(" ",""));
+        colorLightUpMsgService.converterMsg(ByteUtil.byte2HexWithBlank(bytes).replace(" ",""));
     }
 
     @Override

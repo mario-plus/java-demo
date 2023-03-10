@@ -23,7 +23,6 @@ import io.netty.util.internal.SocketUtils;
 public class UdpClient {
     static final Integer bit = 2;
 
-    static final int PORT = Integer.parseInt(System.getProperty("port", "9099"));
     static Channel channel;
 
 
@@ -33,19 +32,19 @@ public class UdpClient {
         new Thread(() -> {
 
             try {
-                sendRandomPort(getDevBrightContent(0, 88));
+//                sendRandomPort(getDevBrightContent(0, 88));
+//
+                sendRandomPort(getDevCTContent(0, 5000));
 
-                sendRandomPort(getDevCTContent(0, 4000));
+     //           sendRandomPort(getPropertyContent(0));
 
-                sendRandomPort(getPropertyContent(0));
-
-                sendRandomPort(getDevSearchContent());
-
-               sendRandomPort(getDevStopOrStart(0, 0));
-
-                sendRandomPort(getSaveContent(0));
-
-                sendRandomPort(getEnableContent(0, true));
+//                sendRandomPort(getDevSearchContent());
+//
+//               sendRandomPort(getDevStopOrStart(0, 0));
+//
+//                sendRandomPort(getSaveContent(0));
+//
+//                sendRandomPort(getEnableContent(0, true));
 
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -66,8 +65,9 @@ public class UdpClient {
     public static String getEnableContent(Integer devNum, boolean enable) {
         //信号源使能
         String res = "1100110000000000ff0000000000000000";//（1显示，0不显示）
-        String s = replaceDev(devNum, res);
-        return ByteUtil.replaceChar(s, s.length() - bit, ByteUtil.decToHexLow(enable ? 1 : 0, bit));
+        String content = replaceDev(devNum, res);
+        content = replaceRequireRes(content);
+        return ByteUtil.replaceChar(content, content.length() - bit, ByteUtil.decToHexLow(enable ? 1 : 0, bit));
     }
 
 
@@ -78,6 +78,7 @@ public class UdpClient {
      */
     public static String getSaveContent(Integer devNum) {
         String save = "1000110000000000ff0000000000000001";//保存设置，ff前两位，表示设备序号
+        save = replaceRequireRes(save);
         return replaceDev(devNum, save);
     }
 
@@ -93,6 +94,7 @@ public class UdpClient {
         //                    1200110000000000ff0000000000000000
         String startOrStop = "1200110000000000ff0000000000000000";//ff前两位表示设备序列号，后一位表示1冻结，0不冻结
         String content = replaceDev(devNum, startOrStop);
+        content = replaceRequireRes(content);
         return ByteUtil.replaceChar(content, content.length() - bit, ByteUtil.decToHexLow(state, bit));
     }
 
@@ -103,6 +105,7 @@ public class UdpClient {
     public static String getPropertyContent(Integer devNum) {
         //查询设备属性
         String getDevProperty = "0100110000000000ff0000000000010016";//查询设备属性，ff前两位，表示设备序号
+        getDevProperty = replaceRequireRes(getDevProperty);
         return replaceDev(devNum, getDevProperty);
     }
 
@@ -115,6 +118,7 @@ public class UdpClient {
         //设置亮度
         String setDevBright = "2100140000000000ff000000000000000000003f";//ff前两位表示设备序号，后四位表示亮度值（0-100）
         String content = replaceDev(devNum, setDevBright);
+        content = replaceRequireRes(content);
         return ByteUtil.replaceChar(content, content.length() - 4 * bit, ByteUtil.floatTo4BytesLow(brightRadio));
     }
 
@@ -127,12 +131,20 @@ public class UdpClient {
         //设置色温
         String setDevCT = "2200120000000000ff000000000000008813";//设置色温，ff前两位，表示设备序号，后两位表示色温1388==>5000（范围2000-10000）
         String content = replaceDev(devNum, setDevCT);
+        content = replaceRequireRes(content);
         return ByteUtil.replaceChar(content, content.length() - 2 * bit, ByteUtil.decToHexLow(ct, 2 * bit));
     }
 
 
     public static String replaceDev(Integer devNum, String content) {
         return ByteUtil.replaceChar(content, 12, ColorLightByteUtil.allocateDev(devNum));
+    }
+
+    /**
+     * 指定应答
+     */
+    public static String replaceRequireRes(String content) {
+        return ByteUtil.replaceChar(content, 18, "04");
     }
 
 
@@ -156,9 +168,13 @@ public class UdpClient {
                     .handler(new UdpClientHandler());
             channel = b.bind(port).sync().channel();
             doSendMsg(hex);
-            channel.closeFuture().sync();//阻塞
+
+        } catch (Exception e) {
+            e.printStackTrace();
         } finally {
+            channel.closeFuture().sync();//阻塞
             group.shutdownGracefully();
+
         }
     }
 
