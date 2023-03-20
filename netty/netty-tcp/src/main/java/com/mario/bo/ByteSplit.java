@@ -1,4 +1,4 @@
-package com.mario.client.bo;
+package com.mario.bo;
 
 import lombok.Data;
 

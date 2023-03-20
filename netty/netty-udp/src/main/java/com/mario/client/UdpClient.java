@@ -6,10 +6,7 @@ import com.mario.client.utils.ColorLightByteUtil;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
-import io.netty.channel.Channel;
-import io.netty.channel.ChannelOption;
-import io.netty.channel.EventLoopGroup;
-import io.netty.channel.FixedRecvByteBufAllocator;
+import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.DatagramPacket;
 import io.netty.channel.socket.nio.NioDatagramChannel;
@@ -32,11 +29,12 @@ public class UdpClient {
         new Thread(() -> {
 
             try {
-//                sendRandomPort(getDevBrightContent(0, 88));
+                sendRandomPort("010011000000FFFFff0000000000010016");
+               // sendRandomPort(getDevBrightContent(0, (float) 0.5));
 //
-                sendRandomPort(getDevCTContent(0, 5000));
+              //  sendRandomPort(getDevCTContent(0, 5000));
 
-     //           sendRandomPort(getPropertyContent(0));
+              //  sendRandomPort(getPropertyContent(0));
 
 //                sendRandomPort(getDevSearchContent());
 //
@@ -142,6 +140,7 @@ public class UdpClient {
 
     /**
      * 指定应答
+     * ef 00 04 00
      */
     public static String replaceRequireRes(String content) {
         return ByteUtil.replaceChar(content, 18, "04");
@@ -181,9 +180,15 @@ public class UdpClient {
     public static void doSendMsg(String hex) throws InterruptedException {
         System.out.println("下行指令：" + hex);
         ByteBuf buf = Unpooled.wrappedBuffer(ByteUtil.Hex2Bytes(hex));
-        channel.writeAndFlush(new DatagramPacket(
+        ChannelFuture future = channel.writeAndFlush(new DatagramPacket(
                 buf,
-                SocketUtils.socketAddress("10.3.52.243", 9099))).sync();//端口为0，自动分配闲置端口
+                SocketUtils.socketAddress("10.3.50.249", 9099))).sync();//端口为0，自动分配闲置端口
+        future.addListener((ChannelFutureListener) channelFuture -> {
+            Throwable cause = channelFuture.cause();
+
+            System.out.println(cause);
+        });
+
     }
 
 

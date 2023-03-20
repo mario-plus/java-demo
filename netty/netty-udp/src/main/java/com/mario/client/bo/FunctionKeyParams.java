@@ -1,8 +1,4 @@
-package com.mario.client;
-
-import com.mario.bo.ByteSplit;
-import com.mario.bo.DataType;
-import com.mario.entity.CreateScreen;
+package com.mario.client.bo;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -36,6 +32,8 @@ public class FunctionKeyParams {
         downFormatMap.put(FunctionKey.readDataScreenInfo, readDataScreenInfo());
         downFormatMap.put(FunctionKey.readDataGetScreen, readDataGetScreen());
 
+
+        upFormatMap = new ConcurrentHashMap<>();
         upFormatMap.put(FunctionKey.getScreenRect, getScreenRect_up());
         upFormatMap.put(FunctionKey.readDataGetScreen, readDataGetScreen_up());
         upFormatMap.put(FunctionKey.readDataScreenInfo, readDataScreenInfo_up());

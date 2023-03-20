@@ -17,8 +17,22 @@ import io.netty.handler.codec.string.StringEncoder;
 public class ZhuMuClients {
     private static String host = "10.3.52.246";
     private static Integer port = 5000;
-    private static String downMsg="/rdIPAddr:d,1;";
     public static Channel channel;
+
+    public static void main(String[] args) throws InterruptedException {
+        connect();
+        //channel.writeAndFlush(Unpooled.copiedBuffer(readIpAddr().getBytes()));
+        channel.writeAndFlush(Unpooled.copiedBuffer(readDataFromScreen().getBytes()));
+    }
+
+    public static String readIpAddr() {
+        return "/rdIPAddr:d,1;";
+    }
+
+    public static String readDataFromScreen(){
+        return "/readDatasGetScreen:d,1;";
+    }
+
 
     public static void connect() throws InterruptedException {
         EventLoopGroup group = new NioEventLoopGroup();
@@ -36,12 +50,6 @@ public class ZhuMuClients {
                     }
                 });
         channel = bootstrap.connect().sync().channel();
-    }
-
-    public static void main(String[] args) throws InterruptedException {
-        connect();
-        Thread.sleep(2000);
-        channel.writeAndFlush(Unpooled.copiedBuffer(downMsg.getBytes()));
     }
 
 

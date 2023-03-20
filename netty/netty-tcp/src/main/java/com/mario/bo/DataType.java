@@ -1,4 +1,4 @@
-package com.mario.client.bo;
+package com.mario.bo;
 
 /**
  * @author zxz
@@ -23,9 +23,11 @@ public interface DataType {
      */
     Integer DATA_TYPE_DOUBLE = 2;
 
+
     /**
      * array
      * */
     Integer DATA_TYPE_ARRAY = 3;
+
 
 }

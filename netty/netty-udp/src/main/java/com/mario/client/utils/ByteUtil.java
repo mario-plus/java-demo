@@ -8,7 +8,7 @@ public class ByteUtil {
 
     /**
      * 8位16进制(高字节在前)字符串，转10进制字符串IP
-     * */
+     */
     protected static String formatValueToIp(String value) {
         if (value.length() > 8) {
             return value;
@@ -37,10 +37,11 @@ public class ByteUtil {
 
     /**
      * 16进制转10进制整形
-     * @param type  3：高字节在前     其他：低字节在前
+     *
+     * @param type 3：高字节在前     其他：低字节在前
      */
     protected static String formatValueToDEC(String value, Integer type) {
-        if (value.length() == 2 || type==3) {//1字节
+        if (value.length() == 2 || type == 3) {//1字节
             return Integer.valueOf(value, 16).toString();
         } else {
             //高低位转换
@@ -97,7 +98,7 @@ public class ByteUtil {
         for (int n = 0; n < size; n++) {
             sb.append("0123456789ABCDEF".charAt(0xF & b[n] >> 4)).append("0123456789ABCDEF".charAt(b[n] & 0xF)).append(" ");
         }
-        return sb.toString();
+        return sb.toString().replace(" ", "");
     }
 
 
@@ -145,7 +146,21 @@ public class ByteUtil {
     }
 
 
-    public static void main(String[] args) {
-
+    public static String hexBytesToAscii(byte[] bytes) {
+        return hexStrToAscii(new String(bytes));
     }
+
+    public static String hexStrToAscii(String hexStr) {
+        StringBuilder output = new StringBuilder("");
+        for (int i = 0; i < hexStr.length(); i += 2) {
+            String str = hexStr.substring(i, i + 2);
+            output.append((char) Integer.parseInt(str, 16));
+        }
+        return output.toString();
+    }
+
+    public static void main(String[] args) {
+        System.out.println(hexStrToAscii("2F61636B3A642C302C302C3338342C3139323B0D0A"));
+    }
+
 }
