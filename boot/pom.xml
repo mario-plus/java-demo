@@ -16,6 +16,7 @@
         <module>Interceptor</module>
         <module>dubbo</module>
         <module>component_scan</module>
+        <module>parse</module>
     </modules>
 
 
@@ -26,6 +27,10 @@
             <artifactId>spring-boot-starter-web</artifactId>
             <version>2.3.1.RELEASE</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.26</version>
+        </dependency>
     </dependencies>
 </project>

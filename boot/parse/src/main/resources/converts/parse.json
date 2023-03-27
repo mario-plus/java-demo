@@ -1,0 +1,183 @@
+{
+  "downMappings": [
+    {
+      "serviceName": "service1",
+      "msgType": "string",
+      "serviceConverter": "",
+      "data": [
+        {
+          "cmd": "f1",
+          "cmdConvert": "",
+          "head": [
+            {
+              "order": 1,
+              "type": "static",
+              "value": "/"
+            },
+            {
+              "order": 2,
+              "type": "dynamic",
+              "value": "#{body}",
+              "elementConvert": "xinSElementDownConvert"
+            }
+          ],
+          "body": [
+            {
+              "order": 1,
+              "value": "${config.ip}"
+            },
+            {
+              "order": 2,
+              "value": "${name}"
+            },
+            {
+              "order": 3,
+              "value": "${devNum}",
+              "targetType": "highHex",
+              "defaultKey": "0",
+              "defaultValue": "FFFF"
+            },
+            {
+              "order": 4,
+              "elementConvert": "${deviceService.getSerialNum(${id})}"
+            },
+            {
+              "order": 5,
+              "targetType": "highHex",
+              "length": 2,
+              "value": "${bright}"
+            },
+            {
+              "order": 6,
+              "targetType": "arraySize",
+              "length": 1,
+              "value": "${list}"
+            }
+          ],
+          "tail": []
+        }
+      ]
+    },
+    {
+      "serviceName": "service2",
+      "msgType": "json",
+      "serviceConverter": "",
+      "data": [
+        {
+          "cmd": "f1",
+          "cmdConvert": "",
+          "body": [
+            {
+              "key": "id",
+              "value": "${id}"
+            },
+            {
+              "key": "light",
+              "value": "${device.light}",
+              "targetType": "array"
+            },
+            {
+              "key": "serialNum",
+              "value": "${serialNum}",
+              "targetType": "array"
+            },
+            {
+              "key": "device",
+              "value": "${device}",
+              "targetType": "jsonObj"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "serviceName": "service3",
+      "msgType": "string",
+      "serviceConverter": "",
+      "data": [
+        {
+          "cmd": "getSceneName",
+          "cmdConvert": "",
+          "body": [
+            {
+              "order": 1,
+              "type": "static",
+              "value": "/getSceneName"
+            },
+            {
+              "order": 3,
+              "type": "static",
+              "value": ":d,"
+            },
+            {
+              "order": 4,
+              "value": "${ugid}",
+              "targetType": "int"
+            },
+            {
+              "order": 5,
+              "type": "static",
+              "value": ";"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "serviceName": "service4",
+      "msgType": "hex",
+      "serviceConverter": "",
+      "data": [
+        {
+          "cmd": "f1",
+          "cmdConvert": "",
+          "head": [
+            {
+              "order": "1",
+              "type": "static",
+              "value": "55AA"
+            },
+            {
+              "order": "2",
+              "value": "#{body}",
+              "elementConvert": "xinSElementDownConvert"
+            }
+          ],
+          "body": [
+            {
+              "order": "1",
+              "value": "${devNum}",
+              "targetType": "highHex",
+              "length": 2
+            },
+            {
+              "order": "2",
+              "value": "${devOrder}",
+              "targetType": "highHex",
+              "length": 1
+            },
+            {
+              "order": "3",
+              "value": "${param1}",
+              "byteGroup": 1,
+              "length": 2
+            },
+            {
+              "order": "4",
+              "value": "${param2}",
+              "byteGroup": 1,
+              "length": 3
+            },
+            {
+              "order": "5",
+              "value": "${param3}",
+              "byteGroup": 1,
+              "length": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "upMappings": []
+}

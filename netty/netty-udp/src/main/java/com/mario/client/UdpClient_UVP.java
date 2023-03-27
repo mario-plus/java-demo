@@ -27,13 +27,23 @@ public class UdpClient_UVP {
 
 
     public static void main(String[] args) throws Exception {
-        sendRandomPort("/getSceneName:d,64;".getBytes());
+        //sendRandomPort("/getGroupName:d,64;".getBytes());
+        // sendRandomPort("/readDatasGetScreen:d,17;".getBytes());
+        // sendRandomPort("/getSceneName:d,2112;".getBytes());
 //        sendRandomPort("/getSceneName:d,128;".getBytes());
 //        sendRandomPort("/getSceneName:d,192;".getBytes());
-   //     sendRandomPort("/getCurScene:d,1;".getBytes());
-        //sendRandomPort("/RdScnEn:d,1;".getBytes());
+        //     sendRandomPort("/getCurScene:d,1;".getBytes());
+        sendRandomPort("/RdScnEn:d,1;".getBytes());
         //sendRandomPort("/deleteWin:d,6,1;".getBytes());
-    //    sendRandomPort("/getUgroup:d,1;".getBytes());
+        //    sendRandomPort("/getUgroup:d,1;".getBytes());
+        //sendRandomPort("/getSceneTaskDatas:d,1;".getBytes());//查询定时场景
+
+       // sendRandomPort("/sveSceneTask:d,25,11,0,0,1,1,0,1;".getBytes());//保存定时场景
+        //sendRandomPort("/sveSceneTask:d,10,0,0,0,0,0,0,1;".getBytes());//删除场景，需要序号id，以及分组号id
+        //sendRandomPort("/ReadTaskListEn:d,1;".getBytes());//用户组定时任务开关状态查询
+        //sendRandomPort("/WriteTaskListEn:d,0,1;".getBytes());//用户组定时任务开关控制
+        //sendRandomPort("/ReadTaskListEn:d,1;".getBytes());//用户组定时任务开关状态查询
+
 
     }
 
@@ -69,7 +79,7 @@ public class UdpClient_UVP {
     }
 
     public static void doSendMsg(byte[] bytes) throws InterruptedException {
-        System.out.println("下行消息"+new String(bytes));
+        System.out.println("下行消息" + new String(bytes));
         ByteBuf buf = Unpooled.wrappedBuffer(bytes);
         channel.writeAndFlush(new DatagramPacket(
                 buf,
