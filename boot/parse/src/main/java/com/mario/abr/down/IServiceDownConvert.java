@@ -7,7 +7,7 @@ import com.mario.push.PushInfo;
  * @date 2023年03月23日 10:06
  * 所有服务convert都需要实现这个抽象类,
  */
-public abstract class IServiceConvert extends IDownConvert<byte[], PushInfo, DownLinkMapping> {
+public abstract class IServiceDownConvert extends IDownConvert<byte[], PushInfo, DownLinkMapping> {
 
     @Override
     protected byte[] doDownConvert(PushInfo info, DownLinkMapping downLinkMapping) {

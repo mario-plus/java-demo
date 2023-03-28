@@ -2,7 +2,7 @@ package com.mario;
 
 import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
-import com.mario.abr.AbrParseToHex;
+import com.mario.abr.AbrParseToBytes;
 import com.mario.abr.down.IDownConvert;
 import com.mario.metadata.CmdInfo;
 import com.mario.metadata.DownLinkMapping;
@@ -33,6 +33,10 @@ import java.util.Arrays;
 @Slf4j
 public class ParseApplication implements ApplicationRunner, ApplicationContextAware {
     private ApplicationContext applicationContext;
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        this.applicationContext = applicationContext;
+    }
 
     public static void main(String[] args) {
         SpringApplication.run(ParseApplication.class, args);
@@ -56,7 +60,11 @@ public class ParseApplication implements ApplicationRunner, ApplicationContextAw
         //TODO 数据只在项目启动是加载，每个线程应该copy downMapping，防止数据格式被篡改
         Metadata metadata = JsonReadUtil.readFile("converts/parse.json", Metadata.class);
         DownLinkMapping downMapping = metadata.getDownMappingByServiceName(pushInfo.getServiceName());
+        downMapping(pushInfo, downMapping);
 
+    }
+
+    private void downMapping(PushInfo pushInfo, DownLinkMapping downMapping) throws Exception {
         if (downMapping.getServiceConverter() != null && !"".equals(downMapping.getServiceConverter())) {//1.自定义服务转换器
             IDownConvert convert = (IDownConvert) applicationContext.getBean(downMapping.getServiceConverter());
             byte[] bytes = (byte[]) convert.convert(pushInfo, downMapping);
@@ -72,13 +80,12 @@ public class ParseApplication implements ApplicationRunner, ApplicationContextAw
                     byte[] bytes = (byte[]) convert.convert(pushInfo, cmdInfoByCmd);
                     log.info("自定义物模型下行数据：" + new String(bytes, StandardCharsets.UTF_8));
                 } else {//3.按模板进行数据解析
-                    AbrParseToHex parse = parseFactory.getParse(downMapping.getMsgType());
+                    AbrParseToBytes parse = parseFactory.getParse(downMapping.getMsgType());
                     byte[] convert = parse.doCmdDownConvert(pushInfo, cmdInfoByCmd);
                     log.info("根据模板解析下行数据：{}", ByteUtil.byte2Hex(convert));
                 }
             }
         }
-
     }
 
 
@@ -143,8 +150,5 @@ public class ParseApplication implements ApplicationRunner, ApplicationContextAw
     }
 
 
-    @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        this.applicationContext = applicationContext;
-    }
+
 }

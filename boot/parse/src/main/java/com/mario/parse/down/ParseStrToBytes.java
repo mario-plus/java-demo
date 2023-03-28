@@ -1,6 +1,6 @@
-package com.mario.parse;
+package com.mario.parse.down;
 
-import com.mario.abr.AbrParseToHex;
+import com.mario.abr.AbrParseToBytes;
 import com.mario.metadata.CmdInfo;
 import com.mario.metadata.Element;
 import com.mario.push.PushInfo;
@@ -14,10 +14,10 @@ import java.util.*;
  * @date 2023年03月22日 14:46
  * 将数据解析成str,再转成byte[]
  */
-public class ParseStrToHex extends AbrParseToHex {
+public class ParseStrToBytes extends AbrParseToBytes {
 
 
-    public ParseStrToHex(ReflectUtil reflectUtil) {
+    public ParseStrToBytes(ReflectUtil reflectUtil) {
         super(reflectUtil);
     }
 

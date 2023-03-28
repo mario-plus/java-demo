@@ -1,6 +1,6 @@
-package com.mario.parse;
+package com.mario.parse.down;
 
-import com.mario.abr.AbrParseToHex;
+import com.mario.abr.AbrParseToBytes;
 import com.mario.metadata.CmdInfo;
 import com.mario.metadata.Element;
 import com.mario.push.PushInfo;
@@ -17,9 +17,9 @@ import java.util.stream.Collectors;
  * @author zxz
  * @date 2023年03月22日 14:51
  */
-public class ParseToDirectHex extends AbrParseToHex {
+public class ParseToDirectBytes extends AbrParseToBytes {
 
-    public ParseToDirectHex(ReflectUtil reflectUtil) {
+    public ParseToDirectBytes(ReflectUtil reflectUtil) {
         super(reflectUtil);
     }
 

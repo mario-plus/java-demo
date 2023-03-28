@@ -1,6 +1,6 @@
 package com.mario.mock.impl;
 
-import com.mario.abr.down.IServiceConvert;
+import com.mario.abr.down.IServiceDownConvert;
 import com.mario.metadata.DownLinkMapping;
 import com.mario.push.PushInfo;
 import org.springframework.stereotype.Service;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
  * @date 2023年03月23日 14:00
  */
 @Service
-public class XinSConvertService extends IServiceConvert {
+public class XinSConvertService extends IServiceDownConvert {
 
     @Override
     protected byte[] doServiceDownConvert(PushInfo pushInfo, DownLinkMapping downLinkMapping) {

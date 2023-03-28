@@ -1,7 +1,10 @@
 package com.mario.parse;
 
-import com.mario.abr.AbrParseToHex;
+import com.mario.abr.AbrParseToBytes;
 import com.mario.constants.DownMsgType;
+import com.mario.parse.down.ParseJsonStrToBytes;
+import com.mario.parse.down.ParseStrToBytes;
+import com.mario.parse.down.ParseToDirectBytes;
 import com.mario.util.ReflectUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -19,21 +22,21 @@ public class ParseFactory {
     @Autowired
     ReflectUtil reflectUtil;
 
-    static Map<String, AbrParseToHex> map = new HashMap<>();
+    static Map<String, AbrParseToBytes> map = new HashMap<>();
 
-    public synchronized AbrParseToHex getParse(String msgType) {
+    public synchronized AbrParseToBytes getParse(String msgType) {
         if (map.get(msgType) != null) {
             return map.get(msgType);
         }
-        AbrParseToHex abrParseToHex;
+        AbrParseToBytes abrParseToBytes;
         if (msgType.equals(DownMsgType.string)) {
-            abrParseToHex = new ParseStrToHex(reflectUtil);
+            abrParseToBytes = new ParseStrToBytes(reflectUtil);
         } else if (msgType.equals(DownMsgType.json)) {
-            abrParseToHex = new ParseJsonStrToHex(reflectUtil);
+            abrParseToBytes = new ParseJsonStrToBytes(reflectUtil);
         } else {
-            abrParseToHex = new ParseToDirectHex(reflectUtil);
+            abrParseToBytes = new ParseToDirectBytes(reflectUtil);
         }
-        map.put(msgType, abrParseToHex);
-        return abrParseToHex;
+        map.put(msgType, abrParseToBytes);
+        return abrParseToBytes;
     }
 }

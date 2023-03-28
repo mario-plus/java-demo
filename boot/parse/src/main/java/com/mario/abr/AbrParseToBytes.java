@@ -1,10 +1,9 @@
 package com.mario.abr;
 
-import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
-import com.mario.abr.down.ICmdConvert;
-import com.mario.abr.down.IDependConvert;
+import com.mario.abr.down.ICmdDownConvert;
+import com.mario.abr.down.IDependDownConvert;
 import com.mario.constants.ElementTargetType;
 import com.mario.constants.ElementType;
 import com.mario.metadata.CmdInfo;
@@ -14,10 +13,8 @@ import com.mario.util.ByteUtil;
 import com.mario.util.ReflectUtil;
 import com.mario.util.StringUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -27,11 +24,11 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * 解析物模型数据
  */
 @Slf4j
-public abstract class AbrParseToHex extends ICmdConvert implements Parse {
+public abstract class AbrParseToBytes extends ICmdDownConvert implements Parse {
 
     ReflectUtil reflectUtil;
 
-    public AbrParseToHex(ReflectUtil reflectUtil) {
+    public AbrParseToBytes(ReflectUtil reflectUtil) {
         this.reflectUtil = reflectUtil;
     }
 
@@ -58,7 +55,7 @@ public abstract class AbrParseToHex extends ICmdConvert implements Parse {
     public void doAfter(List<Element> elements, CmdInfo cmdInfo) {
         elements.stream().filter(element -> StringUtil.j1Data(element.getValue().toString()))
                 .forEach(element -> {
-                    IDependConvert bean = (IDependConvert) reflectUtil.applicationContext.getBean(element.getElementConvert());
+                    IDependDownConvert bean = (IDependDownConvert) reflectUtil.applicationContext.getBean(element.getElementConvert());
                     bean.doElementDownConvert(getDepends(StringUtil.getValueFromS1(element.getValue().toString()), cmdInfo), element);
                 });
     }

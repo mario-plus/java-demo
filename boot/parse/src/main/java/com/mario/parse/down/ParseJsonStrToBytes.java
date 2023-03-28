@@ -1,8 +1,8 @@
-package com.mario.parse;
+package com.mario.parse.down;
 
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
-import com.mario.abr.AbrParseToHex;
+import com.mario.abr.AbrParseToBytes;
 import com.mario.metadata.CmdInfo;
 import com.mario.metadata.Element;
 import com.mario.push.PushInfo;
@@ -14,9 +14,9 @@ import java.util.List;
  * @date 2023年03月22日 14:50
  */
 
-public class ParseJsonStrToHex extends AbrParseToHex {
+public class ParseJsonStrToBytes extends AbrParseToBytes {
 
-    public ParseJsonStrToHex(ReflectUtil reflectUtil) {
+    public ParseJsonStrToBytes(ReflectUtil reflectUtil) {
         super(reflectUtil);
     }
 

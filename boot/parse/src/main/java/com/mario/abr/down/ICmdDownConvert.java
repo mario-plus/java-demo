@@ -9,7 +9,7 @@ import com.mario.push.PushInfo;
  * @date 2023年03月23日 10:11
  * 单个物模型转换
  */
-public abstract class ICmdConvert extends IDownConvert<byte[], PushInfo, CmdInfo> {
+public abstract class ICmdDownConvert extends IDownConvert<byte[], PushInfo, CmdInfo> {
     @Override
     protected byte[] doDownConvert(PushInfo pushInfo, CmdInfo cmdInfo) {
         return doCmdDownConvert(pushInfo, cmdInfo);
