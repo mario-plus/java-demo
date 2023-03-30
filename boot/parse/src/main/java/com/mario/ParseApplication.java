@@ -2,11 +2,15 @@ package com.mario;
 
 import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
-import com.mario.abr.AbrParseToBytes;
-import com.mario.abr.down.IDownConvert;
-import com.mario.metadata.CmdInfo;
-import com.mario.metadata.DownLinkMapping;
+import com.mario.abr.AbrDownParseToBytes;
+import com.mario.abr.AbrParseBytesToElements;
+import com.mario.abr.down.ICmdDownConvert;
+import com.mario.abr.down.IServiceDownConvert;
+import com.mario.metadata.Element;
+import com.mario.metadata.down.CmdInfo;
+import com.mario.metadata.down.DownLinkMapping;
 import com.mario.metadata.Metadata;
+import com.mario.metadata.up.UpLinkMapping;
 import com.mario.parse.ParseFactory;
 import com.mario.push.PushInfo;
 import com.mario.util.ByteUtil;
@@ -24,6 +28,8 @@ import org.springframework.context.ApplicationContextAware;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
 
 /**
  * @author zxz
@@ -33,6 +39,7 @@ import java.util.Arrays;
 @Slf4j
 public class ParseApplication implements ApplicationRunner, ApplicationContextAware {
     private ApplicationContext applicationContext;
+
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         this.applicationContext = applicationContext;
@@ -59,15 +66,27 @@ public class ParseApplication implements ApplicationRunner, ApplicationContextAw
 
         //TODO 数据只在项目启动是加载，每个线程应该copy downMapping，防止数据格式被篡改
         Metadata metadata = JsonReadUtil.readFile("converts/parse.json", Metadata.class);
-        DownLinkMapping downMapping = metadata.getDownMappingByServiceName(pushInfo.getServiceName());
-        downMapping(pushInfo, downMapping);
+//        DownLinkMapping downMapping = metadata.getDownMappingByServiceName(pushInfo.getServiceName());
+//        downMapping(pushInfo, downMapping);
+
+        byte[] bytes = parseByte_json();
+        String serviceName = "upService2";
+        UpLinkMapping upMappingByServiceName = metadata.getUpMappingByServiceName(serviceName);
+        System.out.println(upMapping(bytes, upMappingByServiceName));
+    }
+
+    private String upMapping(byte[] bytes, UpLinkMapping upLinkMapping) throws Exception {
+        AbrParseBytesToElements upParse = parseFactory.getUpParse(upLinkMapping.getMsgType());
+        List<Element> convert = upParse.convert(bytes, upLinkMapping);
+        return upParse.elementsToJsonStr(convert, new JSONObject());
 
     }
 
+
     private void downMapping(PushInfo pushInfo, DownLinkMapping downMapping) throws Exception {
         if (downMapping.getServiceConverter() != null && !"".equals(downMapping.getServiceConverter())) {//1.自定义服务转换器
-            IDownConvert convert = (IDownConvert) applicationContext.getBean(downMapping.getServiceConverter());
-            byte[] bytes = (byte[]) convert.convert(pushInfo, downMapping);
+            IServiceDownConvert convert = (IServiceDownConvert) applicationContext.getBean(downMapping.getServiceConverter());
+            byte[] bytes = convert.convert(pushInfo, downMapping);
             log.info("自定义转换器下行数据：" + new String(bytes, StandardCharsets.UTF_8));
         } else if (downMapping.getData().size() > 0) {
             CmdInfo cmdInfoByCmd = downMapping.getCmdInfoByCmd(pushInfo.getFunctionKey());
@@ -76,16 +95,44 @@ public class ParseApplication implements ApplicationRunner, ApplicationContextAw
             } else {
                 String cmdConvert = cmdInfoByCmd.getCmdConvert();
                 if (cmdConvert != null && !"".equals(cmdConvert)) {//2.自定义单个物模型转换器
-                    IDownConvert convert = (IDownConvert) applicationContext.getBean(cmdConvert);
-                    byte[] bytes = (byte[]) convert.convert(pushInfo, cmdInfoByCmd);
+                    ICmdDownConvert convert = (ICmdDownConvert) applicationContext.getBean(cmdConvert);
+                    byte[] bytes = convert.convert(pushInfo, cmdInfoByCmd);
                     log.info("自定义物模型下行数据：" + new String(bytes, StandardCharsets.UTF_8));
                 } else {//3.按模板进行数据解析
-                    AbrParseToBytes parse = parseFactory.getParse(downMapping.getMsgType());
+                    AbrDownParseToBytes parse = parseFactory.getParse(downMapping.getMsgType());
                     byte[] convert = parse.doCmdDownConvert(pushInfo, cmdInfoByCmd);
                     log.info("根据模板解析下行数据：{}", ByteUtil.byte2Hex(convert));
                 }
             }
         }
+    }
+
+
+    private byte[] parseByte_json() {
+        JSONObject jsonObject = new JSONObject();
+
+        JSONObject test = new JSONObject();
+        test.put("id", 123);
+
+        jsonObject.put("test", test);
+        jsonObject.put("parentId", 143678384L);
+
+        JSONObject device = new JSONObject();
+        device.put("mac", 123);
+        device.put("light", 54);
+        JSONObject child = new JSONObject();
+        child.put("mac", 456);
+        child.put("light", 35);
+
+        device.put("child", child);
+
+        jsonObject.put("device", device);
+        jsonObject.put("code", 401);
+
+        jsonObject.put("time", new Date().toString());
+
+
+        return jsonObject.toString().getBytes();
     }
 
 
@@ -148,7 +195,6 @@ public class ParseApplication implements ApplicationRunner, ApplicationContextAw
         pushInfo.setServiceName("service1");
         return pushInfo;
     }
-
 
 
 }

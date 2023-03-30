@@ -38,8 +38,9 @@ public class UdpClient_UVP {
         //    sendRandomPort("/getUgroup:d,1;".getBytes());
         //sendRandomPort("/getSceneTaskDatas:d,1;".getBytes());//查询定时场景
 
-       // sendRandomPort("/sveSceneTask:d,25,11,0,0,1,1,0,1;".getBytes());//保存定时场景
+        //sendRandomPort("/sveSceneTask:d,25,11,0,0,1,1,0,1;".getBytes());//保存定时场景
         //sendRandomPort("/sveSceneTask:d,10,0,0,0,0,0,0,1;".getBytes());//删除场景，需要序号id，以及分组号id
+        //sendRandomPort("/sveSceneTask:d,3,0,0,0,32,0,0,1;".getBytes());//删除场景，需要序号id，以及分组号id
         //sendRandomPort("/ReadTaskListEn:d,1;".getBytes());//用户组定时任务开关状态查询
         //sendRandomPort("/WriteTaskListEn:d,0,1;".getBytes());//用户组定时任务开关控制
         //sendRandomPort("/ReadTaskListEn:d,1;".getBytes());//用户组定时任务开关状态查询

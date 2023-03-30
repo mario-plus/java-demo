@@ -1,6 +1,6 @@
 package com.mario.constants;
 
-public interface DownMsgType {
+public interface MsgType {
     String hex = "hex";
     String json = "json";
     String string = "string";

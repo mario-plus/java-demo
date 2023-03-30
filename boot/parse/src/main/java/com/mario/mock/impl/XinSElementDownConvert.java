@@ -12,7 +12,7 @@ import java.util.List;
  * @date 2023年03月25日 16:41
  */
 @Component
-public class XinSElementDownDownConvert extends IDependDownConvert {
+public class XinSElementDownConvert extends IDependDownConvert {
 
     @Override
     protected void doDependConvert(List<Element> elements, Element element) {

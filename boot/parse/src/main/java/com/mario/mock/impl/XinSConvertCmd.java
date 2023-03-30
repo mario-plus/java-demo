@@ -1,7 +1,7 @@
 package com.mario.mock.impl;
 
 import com.mario.abr.down.ICmdDownConvert;
-import com.mario.metadata.CmdInfo;
+import com.mario.metadata.down.CmdInfo;
 import com.mario.push.PushInfo;
 import org.springframework.stereotype.Service;
 

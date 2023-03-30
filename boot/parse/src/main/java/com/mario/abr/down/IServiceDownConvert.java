@@ -1,5 +1,5 @@
 package com.mario.abr.down;
-import com.mario.metadata.DownLinkMapping;
+import com.mario.metadata.down.DownLinkMapping;
 import com.mario.push.PushInfo;
 
 /**

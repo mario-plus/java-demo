@@ -1,15 +1,12 @@
 package com.mario.abr;
 
-import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
 import com.mario.abr.down.ICmdDownConvert;
 import com.mario.abr.down.IDependDownConvert;
-import com.mario.constants.ElementTargetType;
 import com.mario.constants.ElementType;
-import com.mario.metadata.CmdInfo;
+import com.mario.metadata.down.CmdInfo;
 import com.mario.metadata.Element;
 import com.mario.push.PushInfo;
-import com.mario.util.ByteUtil;
 import com.mario.util.ReflectUtil;
 import com.mario.util.StringUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -24,11 +21,11 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * 解析物模型数据
  */
 @Slf4j
-public abstract class AbrParseToBytes extends ICmdDownConvert implements Parse {
+public abstract class AbrDownParseToBytes extends ICmdDownConvert implements DownParse {
 
     ReflectUtil reflectUtil;
 
-    public AbrParseToBytes(ReflectUtil reflectUtil) {
+    public AbrDownParseToBytes(ReflectUtil reflectUtil) {
         this.reflectUtil = reflectUtil;
     }
 
@@ -109,33 +106,7 @@ public abstract class AbrParseToBytes extends ICmdDownConvert implements Parse {
             //转成2进制
 
         }
-        switch (element.getTargetType()) {
-            case ElementTargetType.stringType:
-                element.setValue(valueFromD);
-                break;
-            case ElementTargetType.array:
-                element.setValue(JSONArray.from(valueFromD));
-                break;
-            case ElementTargetType.jsonObj:
-                element.setValue(JSONObject.parseObject(valueFromD.toString()));
-                break;
-            case ElementTargetType.highHex:
-                element.setValue(ByteUtil.getHexFromDec(Integer.parseInt(String.valueOf(valueFromD)), element.getLength()));
-                break;
-            case ElementTargetType.lowHex:
-                element.setValue(ByteUtil.getLowHexFromDec(Integer.parseInt(String.valueOf(valueFromD)), element.getLength()));
-                break;
-            case ElementTargetType.intType:
-                element.setValue(Integer.parseInt(String.valueOf(valueFromD)));
-                break;
-            case ElementTargetType.arraySize:
-                element.setValue(JSONArray.from(valueFromD).size());
-                break;
-            case ElementTargetType.arraySizeToHex:
-                element.setValue(ByteUtil.getHexFromDec(JSONArray.from(valueFromD).size(), element.getLength()));
-            default:
-                break;
-        }
+        setElementTargetValue(element, valueFromD);
     }
 
     public List<Element> getDepends(String content, CmdInfo info) {

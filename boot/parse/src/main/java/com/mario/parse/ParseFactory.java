@@ -1,10 +1,14 @@
 package com.mario.parse;
 
-import com.mario.abr.AbrParseToBytes;
-import com.mario.constants.DownMsgType;
-import com.mario.parse.down.ParseJsonStrToBytes;
-import com.mario.parse.down.ParseStrToBytes;
-import com.mario.parse.down.ParseToDirectBytes;
+import com.mario.abr.AbrParseBytesToElements;
+import com.mario.abr.AbrDownParseToBytes;
+import com.mario.constants.MsgType;
+import com.mario.parse.down.DownParseJsonStrToBytes;
+import com.mario.parse.down.DownParseStrToBytes;
+import com.mario.parse.down.DownParseToDirectBytes;
+import com.mario.parse.up.ParseBytesDirect;
+import com.mario.parse.up.ParseBytesToJsonStr;
+import com.mario.parse.up.ParseBytesToStr;
 import com.mario.util.ReflectUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -22,21 +26,39 @@ public class ParseFactory {
     @Autowired
     ReflectUtil reflectUtil;
 
-    static Map<String, AbrParseToBytes> map = new HashMap<>();
+    static Map<String, AbrDownParseToBytes> map = new HashMap<>();
 
-    public synchronized AbrParseToBytes getParse(String msgType) {
+    static Map<String, AbrParseBytesToElements> upMap = new HashMap<>();
+
+    public synchronized AbrDownParseToBytes getParse(String msgType) {
         if (map.get(msgType) != null) {
             return map.get(msgType);
         }
-        AbrParseToBytes abrParseToBytes;
-        if (msgType.equals(DownMsgType.string)) {
-            abrParseToBytes = new ParseStrToBytes(reflectUtil);
-        } else if (msgType.equals(DownMsgType.json)) {
-            abrParseToBytes = new ParseJsonStrToBytes(reflectUtil);
+        AbrDownParseToBytes abrParseToBytes;
+        if (msgType.equals(MsgType.string)) {
+            abrParseToBytes = new DownParseStrToBytes(reflectUtil);
+        } else if (msgType.equals(MsgType.json)) {
+            abrParseToBytes = new DownParseJsonStrToBytes(reflectUtil);
         } else {
-            abrParseToBytes = new ParseToDirectBytes(reflectUtil);
+            abrParseToBytes = new DownParseToDirectBytes(reflectUtil);
         }
         map.put(msgType, abrParseToBytes);
         return abrParseToBytes;
+    }
+
+    public synchronized AbrParseBytesToElements getUpParse(String msgType) {
+        if (upMap.get(msgType) != null) {
+            return upMap.get(msgType);
+        }
+        AbrParseBytesToElements upParse;
+        if (msgType.equals(MsgType.string)) {
+            upParse = new ParseBytesToStr(reflectUtil);
+        } else if (msgType.equals(MsgType.json)) {
+            upParse = new ParseBytesToJsonStr(reflectUtil);
+        } else {
+            upParse = new ParseBytesDirect(reflectUtil);
+        }
+        upMap.put(msgType, upParse);
+        return upParse;
     }
 }

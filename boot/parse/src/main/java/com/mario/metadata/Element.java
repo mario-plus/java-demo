@@ -2,9 +2,11 @@ package com.mario.metadata;
 
 import com.mario.constants.ElementTargetType;
 import com.mario.constants.ElementType;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author zxz
@@ -38,8 +40,14 @@ public class Element {
      * 长度
      * 1.字节
      * 2.位
+     * 3.字符串长度
      */
     private Integer length;
+
+    /**
+     * 起始下标
+     */
+    private Integer startIndex;
 
 
     /**
@@ -79,5 +87,12 @@ public class Element {
      * 所有该标识，都转成2进制，最后转成16进制
      */
     private Integer byteGroup;
+
+
+    /**
+     * 子节点
+     */
+    private List<Element> elements;
+
 
 }

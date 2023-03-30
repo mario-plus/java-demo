@@ -1,5 +1,7 @@
 package com.mario.metadata;
 
+import com.mario.metadata.down.DownLinkMapping;
+import com.mario.metadata.up.UpLinkMapping;
 import lombok.Data;
 
 import java.util.List;
@@ -17,6 +19,10 @@ public class Metadata {
 
     public DownLinkMapping getDownMappingByServiceName(String serviceName) {
         return downMappings.stream().filter(e -> e.getServiceName().equals(serviceName)).findFirst().get();
+    }
+
+    public UpLinkMapping getUpMappingByServiceName(String serviceName){
+        return upMappings.stream().filter(e -> e.getServiceName().equals(serviceName)).findFirst().get();
     }
 
 

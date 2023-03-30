@@ -49,7 +49,7 @@ public class StringUtil {
      * json里面获取数据
      * xxx.xxx.xxx.....
      */
-    public static Object getValueFromD(String str, JSONObject jsonObject) throws Exception {
+    public static Object getValueFromD(String str, JSONObject jsonObject)  {
         if (str.contains(".")) {
             String firstSplitByChar = getFirstSplitByChar(str, "\\.");
             Object o = jsonObject.get(firstSplitByChar);

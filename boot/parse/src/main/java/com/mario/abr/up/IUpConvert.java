@@ -10,9 +10,9 @@ import com.mario.abr.IConvert;
 public abstract class IUpConvert<R, P, M> implements IConvert<R, P, M> {
 
     @Override
-    public R convert(P p, M m) {
+    public R convert(P p, M m) throws Exception {
         return doUpConvert(p, m);
     }
 
-    protected abstract R doUpConvert(P p, M m);
+    protected abstract R doUpConvert(P p, M m) throws Exception;
 }

@@ -1,7 +1,7 @@
 package com.mario.parse.down;
 
-import com.mario.abr.AbrParseToBytes;
-import com.mario.metadata.CmdInfo;
+import com.mario.abr.AbrDownParseToBytes;
+import com.mario.metadata.down.CmdInfo;
 import com.mario.metadata.Element;
 import com.mario.push.PushInfo;
 import com.mario.util.ReflectUtil;
@@ -14,10 +14,10 @@ import java.util.*;
  * @date 2023年03月22日 14:46
  * 将数据解析成str,再转成byte[]
  */
-public class ParseStrToBytes extends AbrParseToBytes {
+public class DownParseStrToBytes extends AbrDownParseToBytes {
 
 
-    public ParseStrToBytes(ReflectUtil reflectUtil) {
+    public DownParseStrToBytes(ReflectUtil reflectUtil) {
         super(reflectUtil);
     }
 

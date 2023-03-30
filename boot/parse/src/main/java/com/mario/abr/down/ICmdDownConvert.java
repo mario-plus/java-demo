@@ -1,7 +1,6 @@
 package com.mario.abr.down;
 
-import com.mario.abr.down.IDownConvert;
-import com.mario.metadata.CmdInfo;
+import com.mario.metadata.down.CmdInfo;
 import com.mario.push.PushInfo;
 
 /**

@@ -1,7 +1,7 @@
 package com.mario.mock.impl;
 
 import com.mario.abr.down.IServiceDownConvert;
-import com.mario.metadata.DownLinkMapping;
+import com.mario.metadata.down.DownLinkMapping;
 import com.mario.push.PushInfo;
 import org.springframework.stereotype.Service;
 

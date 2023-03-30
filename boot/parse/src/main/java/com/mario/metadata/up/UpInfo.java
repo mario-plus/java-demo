@@ -1,5 +1,6 @@
-package com.mario.metadata;
+package com.mario.metadata.up;
 
+import com.mario.metadata.Element;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -7,10 +8,10 @@ import java.util.List;
 
 /**
  * @author zxz
- * @date 2023年03月22日 20:34
+ * @date 2023年03月28日 9:58
  */
 @Data
-public class CmdInfo {
+public class UpInfo {
 
     /**
      * 物模型key
@@ -24,23 +25,15 @@ public class CmdInfo {
     private String cmdType;
 
     /**
-     * 元素列表
+     * 解析模板
      */
-    private List<Element> head = new ArrayList<>();
+    private List<Element> body = new ArrayList<>();
 
-    /**
-     * 元素列表
-     */
-    private List<Element> body= new ArrayList<>();
-
-    /**
-     * 元素列表
-     */
-    private List<Element> tail= new ArrayList<>();
 
     /**
      * 单个物模型转换器
      */
     private String cmdConvert;
+
 
 }

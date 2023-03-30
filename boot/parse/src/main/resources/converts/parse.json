@@ -179,5 +179,74 @@
       ]
     }
   ],
-  "upMappings": []
+  "upMappings": [
+    {
+      "serviceName": "upService1",
+      "msgType": "string",
+      "serviceConverter": "",
+      "cmdKey": {
+      },
+      "data": [
+      ]
+    },
+    {
+      "serviceName": "upService2",
+      "msgType": "json",
+      "serviceConverter": "",
+      "cmdKey": {
+        "key": "${code}"
+      },
+      "data": [
+        {
+          "cmd": "401",
+          "cmdType": "",
+          "cmdConvert": "",
+          "body": [
+            {
+              "key": "test",
+              "value": "${test.id}"
+            },
+            {
+              "key": "parentId",
+              "value": "${parentId}"
+            },
+            {
+              "key": "device",
+              "value": "${device}",
+              "elements": [
+                {
+                  "key": "mac",
+                  "value": "${mac}"
+                },
+                {
+                  "key": "light",
+                  "value": "${light}"
+                },
+                {
+                  "key": "child",
+                  "value": "${child}",
+                  "elements": [
+                    {
+                      "key": "childMac",
+                      "value": "${mac}"
+                    },
+                    {
+                      "key": "childLight",
+                      "value": "${light}"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "time",
+              "value": "${time}",
+              "targetType": "",
+              "elementConvert": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }

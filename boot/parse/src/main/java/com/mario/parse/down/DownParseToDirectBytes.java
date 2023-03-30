@@ -1,7 +1,7 @@
 package com.mario.parse.down;
 
-import com.mario.abr.AbrParseToBytes;
-import com.mario.metadata.CmdInfo;
+import com.mario.abr.AbrDownParseToBytes;
+import com.mario.metadata.down.CmdInfo;
 import com.mario.metadata.Element;
 import com.mario.push.PushInfo;
 import com.mario.util.ByteUtil;
@@ -17,9 +17,9 @@ import java.util.stream.Collectors;
  * @author zxz
  * @date 2023年03月22日 14:51
  */
-public class ParseToDirectBytes extends AbrParseToBytes {
+public class DownParseToDirectBytes extends AbrDownParseToBytes {
 
-    public ParseToDirectBytes(ReflectUtil reflectUtil) {
+    public DownParseToDirectBytes(ReflectUtil reflectUtil) {
         super(reflectUtil);
     }
 
