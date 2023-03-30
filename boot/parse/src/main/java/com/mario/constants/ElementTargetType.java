@@ -28,5 +28,7 @@ public interface ElementTargetType {
 
     String arraySize = "arraySize";//数组长度
 
+    String dynamicArray = "dynamicArray";//动态数组
+
 
 }

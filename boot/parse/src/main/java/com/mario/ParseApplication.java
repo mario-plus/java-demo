@@ -113,25 +113,29 @@ public class ParseApplication implements ApplicationRunner, ApplicationContextAw
 
         JSONObject test = new JSONObject();
         test.put("id", 123);
-
         jsonObject.put("test", test);
         jsonObject.put("parentId", 143678384L);
-
-        JSONObject device = new JSONObject();
-        device.put("mac", 123);
-        device.put("light", 54);
+        jsonObject.put("code", 401);
+        JSONArray childs = new JSONArray();
         JSONObject child = new JSONObject();
         child.put("mac", 456);
         child.put("light", 35);
-
-        device.put("child", child);
-
+        JSONObject child2 = new JSONObject();
+        child2.put("mac", 789);
+        child2.put("light", 12);
+        childs.add(child);
+        childs.add(child2);
+        JSONObject device = new JSONObject();
+        device.put("mac", 123);
+        device.put("light", 54);
+        device.put("child", childs);
         jsonObject.put("device", device);
-        jsonObject.put("code", 401);
-
+        JSONArray jsonArray = new JSONArray();
+        jsonArray.add(1);
+        jsonArray.add(2);
+        jsonArray.add(3);
+        jsonObject.put("arrayData", jsonArray);
         jsonObject.put("time", new Date().toString());
-
-
         return jsonObject.toString().getBytes();
     }
 

@@ -225,6 +225,7 @@
                 {
                   "key": "child",
                   "value": "${child}",
+                  "targetType": "dynamicArray",
                   "elements": [
                     {
                       "key": "childMac",
@@ -241,8 +242,11 @@
             {
               "key": "time",
               "value": "${time}",
-              "targetType": "",
               "elementConvert": ""
+            },
+            {
+              "key": "arrayData",
+              "value": "${arrayData}"
             }
           ]
         }

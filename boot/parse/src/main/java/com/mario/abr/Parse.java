@@ -53,9 +53,13 @@ public interface Parse {
             if (CollectionUtils.isEmpty(element.getElements())) {
                 jsonObject.put(element.getKey(), element.getValue());
             } else {
-                JSONObject child = new JSONObject();
-                jsonObject.put(element.getKey(), child);
-                elementsToJsonStr(element.getElements(), child);
+                if (element.getTargetType().equals(ElementTargetType.dynamicArray)) {//动态数组数据（解析时就已经将数据解析出放在value中）
+                    jsonObject.put(element.getKey(), element.getValue());
+                } else {
+                    JSONObject child = new JSONObject();
+                    jsonObject.put(element.getKey(), child);
+                    elementsToJsonStr(element.getElements(), child);
+                }
             }
         });
         return JSON.toJSONString(jsonObject);
