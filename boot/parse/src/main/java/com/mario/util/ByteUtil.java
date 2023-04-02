@@ -144,6 +144,7 @@ public class ByteUtil {
         return binFromDec.toString();
     }
 
+
     /**
      * 十进制转2进制，固定长度
      * 低位在前
@@ -165,11 +166,8 @@ public class ByteUtil {
         return Integer.toHexString(Integer.parseInt(bins, 2));
     }
 
-
-
     public static void main(String[] args) {
-        List<String> list = Arrays.asList("123", "4343", "5434");
-        System.out.println(list.toString());
-        System.out.println(String.join("", list));
+        int i = Integer.parseInt("0C00",16);
+        System.out.println(Integer.toBinaryString(i));
     }
 }

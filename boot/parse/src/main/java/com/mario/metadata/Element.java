@@ -5,7 +5,6 @@ import com.mario.constants.ElementType;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -37,6 +36,12 @@ public class Element {
 
 
     /**
+     * 动态数组，hex
+     * 组内元素长度，字节数
+     */
+    private Integer arrayLength;
+
+    /**
      * 长度
      * 1.字节
      * 2.位
@@ -46,6 +51,8 @@ public class Element {
 
     /**
      * 起始下标
+     * 1.字符串
+     * 2.字节
      */
     private Integer startIndex;
 
@@ -66,7 +73,8 @@ public class Element {
 
     /**
      * 1.通过beanName.method反射调用，获取单个元素的value
-     * 2.实现IDependConvert类，调用doDependConvert方法
+     * 2.调用{@link com.mario.abr.down.IDependDownConvert#doElementDownConvert}
+     * 3.调用{@link com.mario.abr.up.ICmdKeyUpConvert#doCmdKeyUpConvert}
      */
     private String elementConvert;
 
@@ -83,6 +91,7 @@ public class Element {
 
 
     /**
+     * 上行数据
      * 所属字节标识
      * 所有该标识，都转成2进制，最后转成16进制
      */

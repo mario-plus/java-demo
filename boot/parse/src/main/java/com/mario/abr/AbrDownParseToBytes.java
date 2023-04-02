@@ -52,7 +52,7 @@ public abstract class AbrDownParseToBytes extends ICmdDownConvert implements Dow
     public void doAfter(List<Element> elements, CmdInfo cmdInfo) {
         elements.stream().filter(element -> StringUtil.j1Data(element.getValue().toString()))
                 .forEach(element -> {
-                    IDependDownConvert bean = (IDependDownConvert) reflectUtil.applicationContext.getBean(element.getElementConvert());
+                    IDependDownConvert bean = (IDependDownConvert) reflectUtil.getBean(element.getElementConvert());
                     bean.doElementDownConvert(getDepends(StringUtil.getValueFromS1(element.getValue().toString()), cmdInfo), element);
                 });
     }

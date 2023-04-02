@@ -69,15 +69,21 @@ public class ParseApplication implements ApplicationRunner, ApplicationContextAw
 //        DownLinkMapping downMapping = metadata.getDownMappingByServiceName(pushInfo.getServiceName());
 //        downMapping(pushInfo, downMapping);
 
-        byte[] bytes = parseByte_json();
-        String serviceName = "upService2";
+//        byte[] bytes = parseByte_json();
+//        String serviceName = "upService2";
+//        UpLinkMapping upMappingByServiceName = metadata.getUpMappingByServiceName(serviceName);
+//        System.out.println(upMapping(bytes, upMappingByServiceName));
+
+        String content = "68 9E 00 9E 00 68 88 11 21 21 00 02 10 05 00 00 08 0C 01 28 03 21 00 00 00 81 12 01 CF 0C 00 00 00 00 00 45 00 46 09 32 06 00 00 00 8D 1B 16".replace(" ", "");
+        byte[] bytes1 = ByteUtil.Hex2Bytes(content);
+        String serviceName = "upService3";
         UpLinkMapping upMappingByServiceName = metadata.getUpMappingByServiceName(serviceName);
-        System.out.println(upMapping(bytes, upMappingByServiceName));
+        System.out.println(upMapping(bytes1, upMappingByServiceName));
     }
 
     private String upMapping(byte[] bytes, UpLinkMapping upLinkMapping) throws Exception {
         AbrParseBytesToElements upParse = parseFactory.getUpParse(upLinkMapping.getMsgType());
-        List<Element> convert = upParse.convert(bytes, upLinkMapping);
+        List<Element> convert = upParse.doUpConvert(bytes, upLinkMapping);
         return upParse.elementsToJsonStr(convert, new JSONObject());
 
     }

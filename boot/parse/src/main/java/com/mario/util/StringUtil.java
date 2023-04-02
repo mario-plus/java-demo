@@ -49,7 +49,7 @@ public class StringUtil {
      * json里面获取数据
      * xxx.xxx.xxx.....
      */
-    public static Object getValueFromD(String str, JSONObject jsonObject)  {
+    public static Object getValueFromD(String str, JSONObject jsonObject) {
         if (str.contains(".")) {
             String firstSplitByChar = getFirstSplitByChar(str, "\\.");
             Object o = jsonObject.get(firstSplitByChar);
@@ -84,8 +84,15 @@ public class StringUtil {
 
     /**
      * List<String> to String
-     * */
+     */
     public static String getStrFromList(List<String> list) {
         return String.join("", list);
+    }
+
+    /**
+     * null或""返回true
+     */
+    public static boolean isEmpty(String content) {
+        return content == null || "".equals(content);
     }
 }

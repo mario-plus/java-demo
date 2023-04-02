@@ -79,6 +79,11 @@ public class ReflectUtil implements ApplicationContextAware {
     }
 
 
+    public Object getBean(String beanName) {
+        return applicationContext.getBean(beanName);
+    }
+
+
 }
 
 

@@ -18,6 +18,8 @@ public interface ElementTargetType {
 
     String floatType = "floatType";//浮点型
 
+    String booleanType = "booleanType";//布尔类型
+
     String highHex = "highHex";//高16进制
 
     String lowHex = "lowHex";//低16进制
@@ -29,6 +31,18 @@ public interface ElementTargetType {
     String arraySize = "arraySize";//数组长度
 
     String dynamicArray = "dynamicArray";//动态数组
+
+    String hexToInt = "hexToInt";//16进制to整形
+
+    String lowHexToInt = "lowHexToInt";//低16进制to整形
+
+    String hexToBoolean = "hexToBoolean";//16进制to布尔
+
+    String hexToFloat = "hexToFloat";//16进制to浮点型
+
+
+
+
 
 
 }

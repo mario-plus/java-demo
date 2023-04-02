@@ -45,7 +45,7 @@ public class UdpClient_UVP {
         //sendRandomPort("/WriteTaskListEn:d,0,1;".getBytes());//用户组定时任务开关控制
         //sendRandomPort("/ReadTaskListEn:d,1;".getBytes());//用户组定时任务开关状态查询
         //sendRandomPort("/deleteScreen:d,2;".getBytes());
-
+       sendRandomPort("/initAllSceneTask:d,1;".getBytes());//清空定时任务
     }
 
 

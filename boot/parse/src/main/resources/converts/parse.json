@@ -251,6 +251,111 @@
           ]
         }
       ]
+    },
+    {
+      "serviceName": "upService3",
+      "msgType": "hex",
+      "serviceConverter": "",
+      "cmdKey": {
+        "elementConvert": "xinSCmdKeyConvert"
+      },
+      "data": [
+        {
+          "cmd": "k1",
+          "cmdType": "",
+          "cmdConvert": "",
+          "body": [
+            {
+              "key": "gwSn",
+              "startIndex": 14,
+              "length": 10
+            },
+            {
+              "key": "functionKey",
+              "startIndex": 54,
+              "length": 4
+            },
+            {
+              "key": "state",
+              "startIndex": 58,
+              "length": 4,
+              "elements": [
+                {
+                  "key": "temperatureWarning",
+                  "startIndex": 0,
+                  "length": 1,
+                  "targetType": "booleanType"
+                },
+                {
+                  "key": "electricWarning",
+                  "startIndex": 1,
+                  "length": 1,
+                  "targetType": "booleanType"
+                },
+                {
+                  "key": "phaseMisMatch",
+                  "startIndex": 2,
+                  "length": 1,
+                  "targetType": "booleanType"
+                },
+                {
+                  "key": "loopMisMatch",
+                  "startIndex": 3,
+                  "length": 1,
+                  "targetType": "booleanType"
+                },
+                {
+                  "key": "inconsistentMistMatch",
+                  "startIndex": 4,
+                  "length": 1,
+                  "targetType": "booleanType"
+                },
+                {
+                  "key": "lifeEndWarning",
+                  "startIndex": 5,
+                  "length": 1,
+                  "targetType": "booleanType"
+                }
+              ]
+            },
+            {
+              "key": "fault",
+              "startIndex": 62,
+              "length": 4
+            },
+            {
+              "key": "tmp",
+              "startIndex": 66,
+              "length": 4,
+              "targetType": "lowHexToInt"
+            },
+            {
+              "key": "current",
+              "startIndex": 70,
+              "length": 4,
+              "targetType": "lowHexToInt"
+            },
+            {
+              "key": "voltage",
+              "startIndex": 74,
+              "length": 4,
+              "targetType": "lowHexToInt"
+            },
+            {
+              "key": "power",
+              "startIndex": 78,
+              "length": 8,
+              "targetType": "lowHexToInt"
+            },
+            {
+              "key": "bright",
+              "startIndex": 86,
+              "length": 2,
+              "targetType": "hexToInt"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
