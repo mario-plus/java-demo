@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>com.mario.abr.IConvert</OriginalElement>
+  <nodes>
+    <node x="1941.5" y="433.5">com.mario.abr.AbrParseBytesToElements</node>
+    <node x="1043.0" y="254.5">com.mario.abr.DownParse</node>
+    <node x="1602.5416666666667" y="624.0">com.mario.parse.up.ParseBytesToStr</node>
+    <node x="1680.9166666666667" y="0.0">com.mario.abr.IConvert</node>
+    <node x="522.5416666666667" y="658.5">com.mario.parse.down.DownParseStrToBytes</node>
+    <node x="0.0" y="243.0">com.mario.abr.down.IServiceDownConvert</node>
+    <node x="2320.541666666667" y="635.5">com.mario.parse.up.ParseBytesToJsonStr</node>
+    <node x="1499.9166666666667" y="110.0">com.mario.abr.Parse</node>
+    <node x="2611.541666666667" y="243.0">com.mario.abr.up.IUpConvert</node>
+    <node x="702.0000000000001" y="243.0">com.mario.abr.down.ICmdDownConvert</node>
+    <node x="460.473484848485" y="110.0">com.mario.abr.down.IDownConvert</node>
+    <node x="361.0" y="433.5">com.mario.abr.down.IDependDownConvert</node>
+    <node x="1877.5" y="254.5">com.mario.abr.UpParse</node>
+    <node x="2730.5" y="433.5">com.mario.abr.up.ICmdKeyUpConvert</node>
+    <node x="2315.5" y="433.5">com.mario.abr.up.IServiceUpConvert</node>
+    <node x="1961.5416666666667" y="635.5">com.mario.parse.up.ParseBytesDirect</node>
+    <node x="1242.5416666666667" y="647.0">com.mario.parse.down.DownParseToDirectBytes</node>
+    <node x="882.5416666666667" y="658.5">com.mario.parse.down.DownParseJsonStrToBytes</node>
+    <node x="865.5000000000001" y="376.0">com.mario.abr.AbrDownParseToBytes</node>
+    <node x="414.0" y="243.0">com.mario.abr.down.IElementDownConvert</node>
+    <node x="3003.5" y="433.5">com.mario.abr.up.ICmdUpConvert</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.mario.abr.AbrDownParseToBytes" target="com.mario.abr.down.ICmdDownConvert">
+      <point x="-87.25" y="-99.0" />
+      <point x="952.7500000000001" y="356.0" />
+      <point x="862.5000000000001" y="356.0" />
+      <point x="0.0" y="41.5" />
+    </edge>
+    <edge source="com.mario.parse.down.DownParseToDirectBytes" target="com.mario.abr.AbrDownParseToBytes">
+      <point x="0.0" y="-41.5" />
+      <point x="1412.5416666666667" y="599.0" />
+      <point x="1156.3333333333335" y="599.0" />
+      <point x="116.33333333333326" y="99.0" />
+    </edge>
+    <edge source="com.mario.abr.down.IDependDownConvert" target="com.mario.abr.down.IElementDownConvert">
+      <point x="0.0" y="-41.5" />
+      <point x="0.0" y="41.5" />
+    </edge>
+    <edge source="com.mario.parse.down.DownParseJsonStrToBytes" target="com.mario.abr.AbrDownParseToBytes">
+      <point x="0.0" y="-30.0" />
+      <point x="1052.5416666666667" y="599.0" />
+      <point x="1040.0" y="599.0" />
+      <point x="0.0" y="99.0" />
+    </edge>
+    <edge source="com.mario.abr.down.IElementDownConvert" target="com.mario.abr.down.IDownConvert">
+      <point x="0.0" y="-41.5" />
+      <point x="548.0" y="218.0" />
+      <point x="554.473484848485" y="218.0" />
+      <point x="0.0" y="41.5" />
+    </edge>
+    <edge source="com.mario.parse.up.ParseBytesDirect" target="com.mario.abr.AbrParseBytesToElements">
+      <point x="0.0" y="-53.0" />
+      <point x="2131.0416666666665" y="599.0" />
+      <point x="2118.5" y="599.0" />
+      <point x="0.0" y="41.5" />
+    </edge>
+    <edge source="com.mario.abr.down.IDownConvert" target="com.mario.abr.IConvert">
+      <point x="0.0" y="-41.5" />
+      <point x="554.473484848485" y="85.0" />
+      <point x="1715.1666666666667" y="85.0" />
+      <point x="-34.25" y="30.0" />
+    </edge>
+    <edge source="com.mario.abr.AbrDownParseToBytes" target="com.mario.abr.DownParse">
+      <point x="87.25" y="-99.0" />
+      <point x="1127.25" y="356.0" />
+      <point x="1217.5" y="356.0" />
+      <point x="0.0" y="30.0" />
+    </edge>
+    <edge source="com.mario.abr.up.ICmdKeyUpConvert" target="com.mario.abr.up.IUpConvert">
+      <point x="0.0" y="-41.5" />
+      <point x="2857.0" y="356.0" />
+      <point x="2719.041666666667" y="356.0" />
+      <point x="21.5" y="41.5" />
+    </edge>
+    <edge source="com.mario.parse.down.DownParseStrToBytes" target="com.mario.abr.AbrDownParseToBytes">
+      <point x="0.0" y="-30.0" />
+      <point x="692.5416666666667" y="599.0" />
+      <point x="923.6666666666667" y="599.0" />
+      <point x="-116.33333333333337" y="99.0" />
+    </edge>
+    <edge source="com.mario.abr.up.IServiceUpConvert" target="com.mario.abr.up.IUpConvert">
+      <point x="0.0" y="-41.5" />
+      <point x="2513.0" y="356.0" />
+      <point x="2676.041666666667" y="356.0" />
+      <point x="-21.5" y="41.5" />
+    </edge>
+    <edge source="com.mario.parse.up.ParseBytesToJsonStr" target="com.mario.abr.AbrParseBytesToElements">
+      <point x="0.0" y="-53.0" />
+      <point x="2490.041666666667" y="599.0" />
+      <point x="2236.5" y="599.0" />
+      <point x="118.0" y="41.5" />
+    </edge>
+    <edge source="com.mario.abr.UpParse" target="com.mario.abr.Parse">
+      <point x="0.0" y="-30.0" />
+      <point x="2030.0" y="218.0" />
+      <point x="1772.1666666666667" y="218.0" />
+      <point x="90.75" y="41.5" />
+    </edge>
+    <edge source="com.mario.abr.AbrParseBytesToElements" target="com.mario.abr.up.IUpConvert">
+      <point x="88.5" y="-41.5" />
+      <point x="2207.0" y="346.0" />
+      <point x="2633.041666666667" y="346.0" />
+      <point x="-64.5" y="41.5" />
+    </edge>
+    <edge source="com.mario.abr.up.ICmdUpConvert" target="com.mario.abr.up.IUpConvert">
+      <point x="0.0" y="-41.5" />
+      <point x="3194.0" y="346.0" />
+      <point x="2762.041666666667" y="346.0" />
+      <point x="64.5" y="41.5" />
+    </edge>
+    <edge source="com.mario.abr.down.IServiceDownConvert" target="com.mario.abr.down.IDownConvert">
+      <point x="0.0" y="-41.5" />
+      <point x="197.0" y="218.0" />
+      <point x="491.80681818181824" y="218.0" />
+      <point x="-62.666666666666686" y="41.5" />
+    </edge>
+    <edge source="com.mario.abr.up.IUpConvert" target="com.mario.abr.IConvert">
+      <point x="0.0" y="-41.5" />
+      <point x="2697.541666666667" y="85.0" />
+      <point x="1783.6666666666667" y="85.0" />
+      <point x="34.25" y="30.0" />
+    </edge>
+    <edge source="com.mario.abr.down.ICmdDownConvert" target="com.mario.abr.down.IDownConvert">
+      <point x="1.1368683772161603E-13" y="-41.5" />
+      <point x="862.5000000000002" y="218.0" />
+      <point x="617.1401515151515" y="218.0" />
+      <point x="62.66666666666663" y="41.5" />
+    </edge>
+    <edge source="com.mario.abr.AbrParseBytesToElements" target="com.mario.abr.UpParse">
+      <point x="-88.5" y="-41.5" />
+      <point x="0.0" y="30.0" />
+    </edge>
+    <edge source="com.mario.parse.up.ParseBytesToStr" target="com.mario.abr.AbrParseBytesToElements">
+      <point x="0.0" y="-64.5" />
+      <point x="1772.0416666666667" y="599.0" />
+      <point x="2000.5" y="599.0" />
+      <point x="-118.0" y="41.5" />
+    </edge>
+    <edge source="com.mario.abr.DownParse" target="com.mario.abr.Parse">
+      <point x="0.0" y="-30.0" />
+      <point x="1217.5" y="218.0" />
+      <point x="1590.6666666666667" y="218.0" />
+      <point x="-90.75" y="41.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.4129221732745962" x="1692.5" y="376.5" />
+  <SelectedNodes>
+    <node>com.mario.abr.IConvert</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
