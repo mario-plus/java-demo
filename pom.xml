@@ -25,6 +25,7 @@
         <module>abr</module>
         <module>netty</module>
         <module>sdk</module>
+        <module>note</module>
 
     </modules>
 
