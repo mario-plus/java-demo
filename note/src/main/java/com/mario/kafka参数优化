@@ -1,0 +1,42 @@
+（1）broker参数
+1.处理消息最大线程数，默认为3，建议设置为CPU核数+1（num.network.threads = 9）
+2.处理磁盘IO线程数，建议设置为CPU核数*2（num.io.threads = 16）
+3.数据落盘策略（依赖底层操作系统提供的PageCache功能，PageCache是把尽可能多的空闲内存都当做了磁盘缓存来使用）
+    引发问题：操作系统挂了数据就会丢失
+    每当producer写入10000条消息时，刷数据到磁盘（log.flush.interval.messages=10000）
+    每间隔5秒钟时间，刷数据到磁盘（log.flush.interval.ms=5000）
+4.segment分段存储策略
+    分段文件配置默认是500mb ，有利于快速回收磁盘空间，重启kafka加载也会加快，文件较多时性能会稍微降低
+    日志滚动的周期时间，到达指定周期时间时，强制生成一个新的segment（log.roll.hours=72）
+    segment的索引文件最大尺寸限制，即时log.segment.bytes没达到，也会生成一个新的segment（log.index.size.max.bytes=10*1024*1024）
+    控制日志segment文件的大小，超出该大小则追加到一个新的日志segment文件中（log.segment.bytes=1024*1024*1024）
+5.日志清理策略
+    kafka 的消息不管是消费过还是没有消费，都会持久化到硬盘中，如果没有良好的日志清理策略，久而久之会占满磁盘空间
+    开启日志清理（log.cleaner.enable=true）
+    日志清理运行的线程数（log.cleaner.threads = 2）
+    日志清理策略选择有：delete和compact（默认 delete）
+    数据文件保留多长时间（log.retention.bytes和 log.retention.minutes或 log.retention.hours任意一个达到要求，都会执行删除）
+    log.retention.minutes=300
+    log.retention.hours=24
+    log.retention.bytes=1G
+    文件大小检查的周期时间（log.retention.check.interval.ms=5minutes）
+6.基础配置
+    是否允许自动创建topic，若是false，就需要通过命令创建topic（auto.create.topics.enable =true）
+    默认副本的数量，可以根据 Broker 的个数进行设置（default.replication.factor = 3）
+    分区数量（num.partitions = 3）
+    消息体的最大大小，单位是字节（message.max.bytes = 6525000）
+    socket的发送缓冲区的大小（socket.send.buffer.bytes=102400）
+    socket的接受缓冲区的大小（socket.request.max.bytes=104857600）
+7.副本同步策略
+    isr-InSyncReplica中的follow没有向isr发送心跳包就会被移除，默认10s（replica.lag.time.max.ms = 10000）
+    根据leader和副本的信息条数差值决定是否从isr中剔除此副本，网络不好情况下可提高此值（replica.lag.max.messages = 4000）
+    follower与leader之间的socket超时时间（replica.socket.timeout.ms=30*1000）
+    数据同步时的socket缓存大小（replica.socket.receive.buffer.bytes=64*1024）
+    replicas每次获取数据的最大大小（replica.fetch.max.bytes =1024*1024）
+    replicas同leader之间通信的最大等待时间，失败了会重试（replica.fetch.wait.max.ms =500）
+    fetch的最小数据尺寸，如果leader中尚未同步的数据不足此值,将会阻塞,直到满足条件（replica.fetch.min.bytes =1）
+    leader进行复制的线程数，增大这个数值会增加follower的IO（num.replica.fetchers=1）
+    每个replica检查是否将最高水位进行固化的频率（replica.high.watermark.checkpoint.interval.ms = 5000）
+    leader的不平衡比例，若是超过这个数值，会对分区进行重新的平衡（leader.imbalance.per.broker.percentage = 10）
+    检查leader是否不平衡的时间间隔（leader.imbalance.check.interval.seconds = 300）
+

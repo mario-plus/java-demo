@@ -15,7 +15,7 @@ import io.netty.handler.codec.string.StringEncoder;
  */
 
 public class ZhuMuClients {
-    private static String host = "10.3.52.246";
+    private static String host = "10.3.50.246";
     private static Integer port = 5000;
     public static Channel channel;
 
@@ -29,7 +29,7 @@ public class ZhuMuClients {
         return "/rdIPAddr:d,1;";
     }
 
-    public static String readDataFromScreen(){
+    public static String readDataFromScreen() {
         return "/readDatasGetScreen:d,1;";
     }
 
@@ -45,7 +45,7 @@ public class ZhuMuClients {
                     @Override
                     protected void initChannel(SocketChannel ch) throws Exception {
                         ch.pipeline().addLast("decoder", new StringDecoder());
-                        ch.pipeline().addLast("encoder", new StringEncoder());
+                        ch.pipeline().addLast(new StringEncoder());
                         ch.pipeline().addLast(new NettyClientHandler());
                     }
                 });
