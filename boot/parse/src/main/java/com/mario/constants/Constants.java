@@ -1,10 +1,6 @@
 package com.mario.constants;
 
-/**
- * @author zxz
- * @date 2023年03月22日 21:35
- */
-public interface ElementTargetType {
+public interface Constants {
 
     String stringType = "string";//字符串
 
@@ -42,7 +38,12 @@ public interface ElementTargetType {
 
 
 
+    String dynamic = "dynamic";
+    String statics = "static";
 
 
+    String hex = "hex";
+    String json = "json";
+    String string = "string";
 
 }

@@ -1,7 +1,6 @@
 package com.mario.metadata;
 
-import com.mario.constants.ElementTargetType;
-import com.mario.constants.ElementType;
+import com.mario.constants.Constants;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -23,16 +22,16 @@ public class Element {
 
     /**
      * 数据类型（静态属性，动态属性）
-     * {@link com.mario.constants.ElementType}
+     * {@link com.mario.constants.Constants}
      */
-    private String type = ElementType.dynamic;//默认是动态
+    private String type = Constants.dynamic;//默认是动态
 
 
     /**
      * 目标类型
-     * {@link com.mario.constants.ElementTargetType}
+     * {@link com.mario.constants.Constants}
      */
-    private String targetType = ElementTargetType.stringType;
+    private String targetType = Constants.stringType;
 
 
     /**

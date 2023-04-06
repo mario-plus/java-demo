@@ -11,7 +11,7 @@ import com.mario.metadata.Element;
 public abstract class IElementDownConvert<R,P> extends IDownConvert<R, P, Element> {
 
     @Override
-    protected R doDownConvert(P p, Element element) {
+    public R doDownConvert(P p, Element element) {
         return doElementDownConvert(p, element);
     }
 

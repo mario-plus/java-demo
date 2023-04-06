@@ -4,7 +4,7 @@ import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
 import com.mario.abr.AbrParseBytesToElements;
-import com.mario.constants.ElementTargetType;
+import com.mario.constants.Constants;
 import com.mario.metadata.Element;
 import com.mario.metadata.up.UpInfo;
 import com.mario.metadata.up.UpLinkMapping;
@@ -37,7 +37,7 @@ public class ParseBytesToJsonStr extends AbrParseBytesToElements {
 
     public void setElementValue(JSONObject resource, Element element) {
         if (element.getElements() != null && !element.getElements().isEmpty()) {
-            if (element.getTargetType() != null && element.getTargetType().equals(ElementTargetType.dynamicArray)) {
+            if (element.getTargetType() != null && element.getTargetType().equals(Constants.dynamicArray)) {
                 JSONArray parse = JSONArray.parse(resource.get(element.getKey()).toString());
                 JSONArray data = new JSONArray();
                 parse.forEach(e -> {

@@ -1,6 +1,6 @@
 package com.mario.metadata.up;
 
-import com.mario.constants.MsgType;
+
 import com.mario.metadata.Element;
 import lombok.Data;
 
@@ -16,7 +16,7 @@ public class UpLinkMapping {
     private String serviceName;
 
     /**
-     * 上行数据目标格式{@link MsgType}
+     * 上行数据目标格式{@link com.mario.constants.Constants}
      * 协议格式:
      * 如直接转成String进行解析{@link com.mario.parse.up.ParseBytesToStr}
      * 如转成Json进行解析{@link com.mario.parse.up.ParseBytesToJsonStr}

@@ -3,7 +3,7 @@ package com.mario.abr;
 import com.alibaba.fastjson2.JSONObject;
 import com.mario.abr.down.ICmdDownConvert;
 import com.mario.abr.down.IDependDownConvert;
-import com.mario.constants.ElementType;
+import com.mario.constants.Constants;
 import com.mario.metadata.down.CmdInfo;
 import com.mario.metadata.Element;
 import com.mario.push.PushInfo;
@@ -74,7 +74,7 @@ public abstract class AbrDownParseToBytes extends ICmdDownConvert implements Dow
                 if (element.getElementConvert() != null && !"".equals(element.getElementConvert())) {//自定义转换器
                     valueFromD = reflectUtil.callByStr(element.getElementConvert(), downData);
                 } else {
-                    if (element.getType().equals(ElementType.dynamic) && StringUtil.s1Data(element.getValue().toString())) {//静态数据不做处理，直接填充
+                    if (element.getType().equals(Constants.dynamic) && StringUtil.s1Data(element.getValue().toString())) {//静态数据不做处理，直接填充
                         valueFromD = StringUtil.getValueFromD(StringUtil.getValueFromS1(element.getValue().toString()), downData);
                     }
                     if (StringUtil.j1Data(element.getValue().toString())) {
@@ -85,7 +85,7 @@ public abstract class AbrDownParseToBytes extends ICmdDownConvert implements Dow
                 log.error("error to parse data:{}", element);
                 e.printStackTrace();
             }
-            if (element.getType().equals(ElementType.dynamic)) {
+            if (element.getType().equals(Constants.dynamic)) {
                 setTargetValue(element, valueFromD);
             }
         });

@@ -3,7 +3,7 @@ package com.mario.parse.up;
 import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
 import com.mario.abr.AbrParseBytesToElements;
-import com.mario.constants.ElementTargetType;
+import com.mario.constants.Constants;
 import com.mario.metadata.Element;
 import com.mario.metadata.up.UpInfo;
 import com.mario.metadata.up.UpLinkMapping;
@@ -35,7 +35,7 @@ public class ParseBytesDirect extends AbrParseBytesToElements {
     private void setElementValue(List<Element> elements, String content) {
         elements.forEach(element -> {
             String elementContent = content.substring(element.getStartIndex(), (element.getStartIndex() + element.getLength()));
-            if (element.getTargetType() != null && element.getTargetType().equals(ElementTargetType.dynamicArray)) {//动态数组，element.getElements()不能为空
+            if (element.getTargetType() != null && element.getTargetType().equals(Constants.dynamicArray)) {//动态数组，element.getElements()不能为空
 //                JSONArray data = new JSONArray();
 //                for (int i = 0; i < elementContent.length() / element.getArrayLength() * 2; i++) {
 //                    List<Element> childElements = JSONArray.parseArray(JSONArray.toJSONString(element.getElements()), Element.class);//深拷贝

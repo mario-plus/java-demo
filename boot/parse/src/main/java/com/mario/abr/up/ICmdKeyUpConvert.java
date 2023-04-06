@@ -8,7 +8,7 @@ package com.mario.abr.up;
 public abstract class ICmdKeyUpConvert extends IUpConvert<String, byte[], Object> {
 
     @Override
-    protected String doUpConvert(byte[] bytes, Object o) {
+    public String doUpConvert(byte[] bytes, Object o) {
         return doCmdKeyUpConvert(bytes);
     }
 

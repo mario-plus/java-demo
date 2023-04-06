@@ -10,7 +10,7 @@ import com.mario.push.PushInfo;
  */
 public abstract class ICmdDownConvert extends IDownConvert<byte[], PushInfo, CmdInfo> {
     @Override
-    protected byte[] doDownConvert(PushInfo pushInfo, CmdInfo cmdInfo) {
+    public byte[] doDownConvert(PushInfo pushInfo, CmdInfo cmdInfo) {
         return doCmdDownConvert(pushInfo, cmdInfo);
     }
 

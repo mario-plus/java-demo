@@ -10,7 +10,7 @@ import com.mario.push.PushInfo;
 public abstract class IServiceDownConvert extends IDownConvert<byte[], PushInfo, DownLinkMapping> {
 
     @Override
-    protected byte[] doDownConvert(PushInfo info, DownLinkMapping downLinkMapping) {
+    public byte[] doDownConvert(PushInfo info, DownLinkMapping downLinkMapping) {
         return doServiceDownConvert(info,downLinkMapping);
     }
 

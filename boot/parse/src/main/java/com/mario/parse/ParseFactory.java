@@ -2,7 +2,8 @@ package com.mario.parse;
 
 import com.mario.abr.AbrParseBytesToElements;
 import com.mario.abr.AbrDownParseToBytes;
-import com.mario.constants.MsgType;
+import com.mario.constants.Constants;
+
 import com.mario.parse.down.DownParseJsonStrToBytes;
 import com.mario.parse.down.DownParseStrToBytes;
 import com.mario.parse.down.DownParseToDirectBytes;
@@ -35,9 +36,9 @@ public class ParseFactory {
             return map.get(msgType);
         }
         AbrDownParseToBytes abrParseToBytes;
-        if (msgType.equals(MsgType.string)) {
+        if (msgType.equals(Constants.string)) {
             abrParseToBytes = new DownParseStrToBytes(reflectUtil);
-        } else if (msgType.equals(MsgType.json)) {
+        } else if (msgType.equals(Constants.json)) {
             abrParseToBytes = new DownParseJsonStrToBytes(reflectUtil);
         } else {
             abrParseToBytes = new DownParseToDirectBytes(reflectUtil);
@@ -51,9 +52,9 @@ public class ParseFactory {
             return upMap.get(msgType);
         }
         AbrParseBytesToElements upParse;
-        if (msgType.equals(MsgType.string)) {
+        if (msgType.equals(Constants.string)) {
             upParse = new ParseBytesToStr(reflectUtil);
-        } else if (msgType.equals(MsgType.json)) {
+        } else if (msgType.equals(Constants.json)) {
             upParse = new ParseBytesToJsonStr(reflectUtil);
         } else {
             upParse = new ParseBytesDirect(reflectUtil);

@@ -1,6 +1,6 @@
 package com.mario.metadata.down;
 
-import com.mario.constants.MsgType;
+
 import lombok.Data;
 
 import java.util.List;
@@ -16,7 +16,7 @@ public class DownLinkMapping {
 
     /**
      * 下行数据类型
-     * {@link MsgType}
+     * {@link com.mario.constants.Constants}
      */
     private String msgType;
 
