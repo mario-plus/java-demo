@@ -68,7 +68,6 @@ public class ParseApplication implements ApplicationRunner, ApplicationContextAw
         Metadata metadata = JsonReadUtil.readFile("converts/parse.json", Metadata.class);
 //        DownLinkMapping downMapping = metadata.getDownMappingByServiceName(pushInfo.getServiceName());
 //        downMapping(pushInfo, downMapping);
-
 //        byte[] bytes = parseByte_json();
 //        String serviceName = "upService2";
 //        UpLinkMapping upMappingByServiceName = metadata.getUpMappingByServiceName(serviceName);
