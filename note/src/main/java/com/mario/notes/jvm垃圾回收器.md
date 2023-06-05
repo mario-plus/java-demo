@@ -30,3 +30,56 @@
     需要扫描整个java堆才能保证正确性
     解决方法：每个Region都有一个对应的Remembered Set，使用Remembered Set来避免全局扫描
              通过CardTable把相关引用信息记录到引用指向对象的所在Region对应的Remembered Set中
+             
+             
+
+jvm调优
+    核心指标
+    jvm.gc.time:每分钟的gc耗时在1s内，500ms以内更佳
+    jvm.gc.meattime:每次YGC在100ms内，50ms更加
+    jvm.fullgc.time:每次fullGc耗时在1s内，500ms以内更佳
+    jvm.fullgc.count:FGC最多几个小时一次，1天不到一次更佳
+  
+    
+   工具
+       bin/jvisualvm  
+       jprofile(可看到每个线程运行情况)
+   优化步骤
+        ps -ef | grep java
+        top：显示系统各个进程的资源使用情况
+        top -Hp pid：查看某个进程中的线程占用情况
+        jstack pid: 查看当前 Java 进程的线程堆栈信息
+        jinfo pid:  查看 Java 进程的配置信息，包括系统属性和JVM命令行标志
+        jstat -gc pid: 输出 Java 进程当前的 gc 情况
+        jmap -heap pid: 输出 Java 堆详细信息
+        jmap -histo:live pid 显示堆中对象的统计信息
+        jmap -F -dump:format=b,file=dumpFile.phrof pid 生成 Java 堆存储快照dump文件
+   JVM 的 GC指标一般是从 GC 日志里面查看，默认的 GC 日志可能比较少
+        -XX:+PrintGCDetails  // 打印GC的详细信息
+        -XX:+PrintGCDateStamps // 打印GC的时间戳
+        -XX:+PrintHeapAtGC  // 在GC前后打印堆信息
+        -XX:+PrintTenuringDistribution  // 打印Survivor区中各个年龄段的对象的分布信息
+        -XX:+PrintFlagsFinal    // JVM启动时输出所有参数值，方便查看参数是否被覆盖
+        -XX:+PrintGCApplicationStoppedTime  // 打印GC时应用程序的停止时间
+        -XX:+PrintReferenceGC   // 打印在GC期间处理引用对象的时间（仅在PrintGCDetails时启用）
+    
+    
+    
+    
+    
+用户线程CPU占用过高
+    java -jar arthas-boot.jar
+    thread
+    thread pid
+GC线程占有CPU过高
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

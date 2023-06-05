@@ -4,9 +4,7 @@ import com.google.common.util.concurrent.*;
 import com.mario.thread.AsyncThread;
 
 
-import java.util.concurrent.Callable;
 import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 
 /**
  * @author zxz

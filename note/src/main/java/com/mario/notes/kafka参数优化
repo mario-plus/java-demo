@@ -1,0 +1,96 @@
+（1）broker参数
+1.处理消息最大线程数，默认为3，建议设置为CPU核数+1（num.network.threads = 9）
+2.处理磁盘IO线程数，建议设置为CPU核数*2（num.io.threads = 16）
+3.数据落盘策略（依赖底层操作系统提供的PageCache功能，PageCache是把尽可能多的空闲内存都当做了磁盘缓存来使用）
+    引发问题：操作系统挂了数据就会丢失
+    每当producer写入10000条消息时，刷数据到磁盘（log.flush.interval.messages=10000）
+    每间隔5秒钟时间，刷数据到磁盘（log.flush.interval.ms=5000）
+4.segment分段存储策略
+    分段文件配置默认是500mb ，有利于快速回收磁盘空间，重启kafka加载也会加快，文件较多时性能会稍微降低
+    日志滚动的周期时间，到达指定周期时间时，强制生成一个新的segment（log.roll.hours=72）
+    segment的索引文件最大尺寸限制，即时log.segment.bytes没达到，也会生成一个新的segment（log.index.size.max.bytes=10*1024*1024）
+    控制日志segment文件的大小，超出该大小则追加到一个新的日志segment文件中（log.segment.bytes=1024*1024*1024）
+5.日志清理策略
+    kafka 的消息不管是消费过还是没有消费，都会持久化到硬盘中，如果没有良好的日志清理策略，久而久之会占满磁盘空间
+    开启日志清理（log.cleaner.enable=true）
+    日志清理运行的线程数（log.cleaner.threads = 2）
+    日志清理策略选择有：delete和compact（默认 delete）
+    数据文件保留多长时间（log.retention.bytes和 log.retention.minutes或 log.retention.hours任意一个达到要求，都会执行删除）
+    log.retention.minutes=300
+    log.retention.hours=24
+    log.retention.bytes=1G
+    文件大小检查的周期时间（log.retention.check.interval.ms=5minutes）
+6.基础配置
+    是否允许自动创建topic，若是false，就需要通过命令创建topic（auto.create.topics.enable =true）
+    默认副本的数量，可以根据 Broker 的个数进行设置（default.replication.factor = 3）
+    分区数量（num.partitions = 3）
+    消息体的最大大小，单位是字节（message.max.bytes = 6525000）
+    socket的发送缓冲区的大小（socket.send.buffer.bytes=102400）
+    socket的接受缓冲区的大小（socket.request.max.bytes=104857600）
+7.副本同步策略
+    isr-InSyncReplica中的follow没有向isr发送心跳包就会被移除，默认10s（replica.lag.time.max.ms = 10000）
+    根据leader和副本的信息条数差值决定是否从isr中剔除此副本，网络不好情况下可提高此值（replica.lag.max.messages = 4000）
+    follower与leader之间的socket超时时间（replica.socket.timeout.ms=30*1000）
+    数据同步时的socket缓存大小（replica.socket.receive.buffer.bytes=64*1024）
+    replicas每次获取数据的最大大小（replica.fetch.max.bytes =1024*1024）
+    replicas同leader之间通信的最大等待时间，失败了会重试（replica.fetch.wait.max.ms =500）
+    fetch的最小数据尺寸，如果leader中尚未同步的数据不足此值,将会阻塞,直到满足条件（replica.fetch.min.bytes =1）
+    leader进行复制的线程数，增大这个数值会增加follower的IO（num.replica.fetchers=1）
+    每个replica检查是否将最高水位进行固化的频率（replica.high.watermark.checkpoint.interval.ms = 5000）
+    leader的不平衡比例，若是超过这个数值，会对分区进行重新的平衡（leader.imbalance.per.broker.percentage = 10）
+    检查leader是否不平衡的时间间隔（leader.imbalance.check.interval.seconds = 300）
+8.开发配置参数
+consumer:
+spring.kafka.consumer.enable-auto-commit=true;//消费者的偏移量将在后台定期提交，默认值为true
+spring.kafka.consumer.auto-commit-interval;//消费者偏移自动提交给Kafka的频率,默认值为5000ms
+spring.kafka.consumer.auto-offset-reset=latest;//当Kafka中没有初始偏移量或者服务器上不再存在当前偏移量时,latest(默认), earliest, none
+spring.kafka.consumer.bootstrap-servers;//以逗号分隔的主机：端口对列表，用于建立与Kafka群集的初始连接
+spring.kafka.consumer.client-id;//ID在发出请求时传递给服务器;用于服务器端日志记录
+spring.kafka.consumer.fetch-max-wait;//如果没有足够的数据立即满足“fetch.min.bytes”给出的要求，服务器在回答获取请求之前将阻塞的最长时间,默认500ms
+spring.kafka.consumer.fetch-min-size;//服务器应以字节为单位返回获取请求的最小数据量，默认值为1，对应的kafka的参数为fetch.min.bytes
+spring.kafka.consumer.group-id;//用于标识此使用者所属的使用者组的唯一字符串
+spring.kafka.consumer.heartbeat-interval;//心跳与消费者协调员之间的预期时间，默认值为3000ms
+spring.kafka.consumer.key-deserializer=org.apache.kafka.common.serialization.StringDeserializer;//key反序列化器类，实现类实现了接口org.apache.kafka.common.serialization.Deserializer
+spring.kafka.consumer.value-deserializer=org.apache.kafka.common.serialization.StringDeserializer;//value反序列化器类，实现类实现了接口org.apache.kafka.common.serialization.Deserializer
+spring.kafka.consumer.max-poll-records;//一次调用poll()操作时返回的最大记录数，默认值为500
+
+producer:
+spring.kafka.producer.acks=1；//acks = 0 无确认;acks = 1 leader确认;acks = all（-1）leader以及副本都确认
+spring.kafka.producer.batch-size=16384;//每当多个记录被发送到同一分区时，生产者将尝试将记录一起批量处理为更少的请求;默认值为16384(字节)
+spring.kafka.producer.bootstrap-servers；//以逗号分隔的主机：端口对列表，用于建立与Kafka群集的初始连接
+spring.kafka.producer.buffer-memory=33554432;//生产者可用于缓冲等待发送到服务器的记录的内存总字节数，默认值为33554432
+spring.kafka.producer.client-id；//ID在发出请求时传递给服务器，用于服务器端日志记录
+
+#生产者生成的所有数据的压缩类型，此配置接受标准压缩编解码器（'gzip'，'snappy'，'lz4'），
+#它还接受'uncompressed'以及'producer'，分别表示没有压缩以及保留生产者设置的原始压缩编解码器，
+#默认值为producer
+spring.kafka.producer.compression-type=producer
+
+#key的Serializer类，实现类实现了接口org.apache.kafka.common.serialization.Serializer
+spring.kafka.producer.key-serializer=org.apache.kafka.common.serialization.StringSerializer
+
+#值的Serializer类，实现类实现了接口org.apache.kafka.common.serialization.Serializer
+spring.kafka.producer.value-serializer=org.apache.kafka.common.serialization.StringSerializer
+
+#如果该值大于零时，表示启用重试失败的发送次数
+spring.kafka.producer.retries
+#################producer的配置参数（结束）#################
+#################listener的配置参数（结束）#################
+#侦听器的AckMode,参见https://docs.spring.io/spring-kafka/reference/htmlsingle/#committing-offsets
+#当enable.auto.commit的值设置为false时，该值会生效；为true时不会生效
+spring.kafka.listener.ack-mode;
+
+#在侦听器容器中运行的线程数
+spring.kafka.listener.concurrency;
+
+#轮询消费者时使用的超时（以毫秒为单位）
+spring.kafka.listener.poll-timeout;
+
+#当ackMode为“COUNT”或“COUNT_TIME”时，偏移提交之间的记录数
+spring.kafka.listener.ack-count;
+
+#当ackMode为“TIME”或“COUNT_TIME”时，偏移提交之间的时间（以毫秒为单位）
+spring.kafka.listener.ack-time;
+#################listener的配置参数（结束）#################
+
+

@@ -26,6 +26,8 @@
         <module>netty</module>
         <module>sdk</module>
         <module>note</module>
+        <module>jvm</module>
+        <module>rules</module>
 
     </modules>
 
