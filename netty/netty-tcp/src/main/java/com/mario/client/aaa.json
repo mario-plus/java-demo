@@ -1,0 +1,83 @@
+{
+  "ep": 1,
+  "code": 102,
+  "id": "05032c6a6f00ee14d000",
+  "serial": 123,
+  "result": 0,
+  "control": {
+    "readAlarm": {
+      "cvolt": [
+        {
+          "comparator": "<",
+          "event": "142",
+          "value": 200
+        },
+        {
+          "comparator": ">",
+          "event": "143",
+          "value": 240
+        }
+      ],
+      "bcurr": [
+        {
+          "comparator": "<",
+          "event": "126",
+          "value": 2
+        },
+        {
+          "comparator": ">",
+          "event": "127",
+          "value": 2
+        }
+      ],
+      "ccurr": [
+        {
+          "comparator": "<",
+          "event": "146",
+          "value": 2
+        },
+        {
+          "comparator": ">",
+          "event": "147",
+          "value": 2
+        }
+      ],
+      "acurr": [
+        {
+          "comparator": ">",
+          "event": "107",
+          "value": 0.4
+        },
+        {
+          "comparator": "<",
+          "event": "106",
+          "value": 0
+        }
+      ],
+      "avolt": [
+        {
+          "comparator": ">",
+          "event": "103",
+          "value": 181
+        },
+        {
+          "comparator": "<",
+          "event": "102",
+          "value": 251
+        }
+      ],
+      "bvolt": [
+        {
+          "comparator": "<",
+          "event": "122",
+          "value": 200
+        },
+        {
+          "comparator": ">",
+          "event": "123",
+          "value": 240
+        }
+      ]
+    }
+  }
+}

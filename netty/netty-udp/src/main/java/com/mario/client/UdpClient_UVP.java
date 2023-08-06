@@ -27,17 +27,9 @@ public class UdpClient_UVP {
     static Channel channel;
 
     public static void main(String[] args) throws InterruptedException {
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("cmd","getServiceStatus");
-
-        //jsonObject.put("cmd","getPlayingChapter");
-
-        //返回 SUCCESS
-//        jsonObject.put("cmd","globalBrightness");
-//        jsonObject.put("param1",11);
-
-        send(9090,jsonObject.toJSONString().getBytes());
+        send(16384, "PROGPLAY 1;".getBytes());
     }
+
     private static void send(Integer port, byte[] bytes) throws InterruptedException {
         EventLoopGroup group = new NioEventLoopGroup();
         try {
@@ -70,7 +62,7 @@ public class UdpClient_UVP {
         ByteBuf buf = Unpooled.wrappedBuffer(bytes);
         channel.writeAndFlush(new DatagramPacket(
                 buf,
-                SocketUtils.socketAddress("10.3.50.164", 30303))).sync();//端口为0，自动分配闲置端口
+                SocketUtils.socketAddress("10.3.52.78", 16384))).sync();//端口为0，自动分配闲置端口
     }
 
 

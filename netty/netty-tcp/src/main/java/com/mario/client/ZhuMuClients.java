@@ -8,6 +8,9 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
+import io.netty.handler.timeout.IdleStateHandler;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author zxz
@@ -15,22 +18,17 @@ import io.netty.handler.codec.string.StringEncoder;
  */
 
 public class ZhuMuClients {
-    private static String host = "10.3.50.246";
-    private static Integer port = 5000;
+    private static String host = "10.3.52.78";//"10.3.50.195"
+    private static Integer port = 16384;
     public static Channel channel;
 
     public static void main(String[] args) throws InterruptedException {
+        String msg = "PROGPLAY 1;";
         connect();
-        //channel.writeAndFlush(Unpooled.copiedBuffer(readIpAddr().getBytes()));
-        channel.writeAndFlush(Unpooled.copiedBuffer(readDataFromScreen().getBytes()));
-    }
-
-    public static String readIpAddr() {
-        return "/rdIPAddr:d,1;";
-    }
-
-    public static String readDataFromScreen() {
-        return "/readDatasGetScreen:d,1;";
+        channel.writeAndFlush(msg);
+        Thread.sleep(70 * 1000);
+        System.out.println("休眠结束");
+        channel.writeAndFlush(msg);
     }
 
 
@@ -38,18 +36,24 @@ public class ZhuMuClients {
         EventLoopGroup group = new NioEventLoopGroup();
         Bootstrap bootstrap = new Bootstrap();
         bootstrap.group(group)
-                .channel(NioSocketChannel.class)
-                .remoteAddress(host, port)
                 .option(ChannelOption.SO_KEEPALIVE, true)
+                .channel(NioSocketChannel.class).option(ChannelOption.TCP_NODELAY, true)
                 .handler(new ChannelInitializer<SocketChannel>() {
                     @Override
                     protected void initChannel(SocketChannel ch) throws Exception {
-                        ch.pipeline().addLast("decoder", new StringDecoder());
+                        ch.pipeline().addLast("idleStateHandler", new IdleStateHandler(10, 10, 10, TimeUnit.SECONDS));
+                        ch.pipeline().addLast(new StringDecoder());
                         ch.pipeline().addLast(new StringEncoder());
                         ch.pipeline().addLast(new NettyClientHandler());
                     }
                 });
-        channel = bootstrap.connect().sync().channel();
+
+        ChannelFuture sync = bootstrap.connect(host, port).sync();
+        if (sync.isSuccess()) {
+            System.out.println("erererer");
+            channel = sync.channel();
+        }
+
     }
 
 

@@ -93,8 +93,8 @@ Rebalance的过程如下：
 答：kafka中与leader副本保持一定同步程度的副本（包括leader）组成ISR。与leader滞后太多的副本组成OSR。分区中所有的副本通称为AR。
 
 ISR : 速率和leader相差低于10秒的follower的集合
-OSR : 速率和leader相差大于10秒的follower
-AR : 全部分区的follower
+                  OSR : 速率和leader相差大于10秒的follower
+                  AR : 全部分区的follower
 
 14、Kafka 中的HW、LEO等分别代表什么？
 答：HW：高水位，指消费者只能拉取到这个offset之前的数据

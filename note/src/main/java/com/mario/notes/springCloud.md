@@ -4,7 +4,7 @@
     负载均衡：Ribbon
     断路器：Hystrix，Sentinel
     网关：zuul
-    
+    A 可用性 P分区容错性 C 一致性
 2. Eureka面试题（AP）
     注册服务：客户端将服务信息封装成对象，调用http接口注册，服务端使用ConcurrentHashMap保存
     客户端拉取服务器注册实例（定时）：通过ScheduledExecutorService默认周期60s（第一次全量，第二次增量）

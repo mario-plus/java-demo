@@ -1,0 +1,1219 @@
+{
+  "DeviceContext": {
+    "cmd": "lampAlarm",
+    "commandID": "844080305724542976",
+    "deviceSN": "829137789064138752",
+    "deviceType": 1,
+    "tranfs": false
+  },
+  "ResultData": {
+    "lampNodeAlarm": [
+      {
+        "alarmType": 6,
+        "alarmValue": 220.0,
+        "isAlarm": true,
+        "loopId": 1,
+        "timeStamp": 1689737582811
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 220.0,
+        "isAlarm": true,
+        "loopId": 1,
+        "timeStamp": 1689737582811
+      },
+      {
+        "alarmType": 6,
+        "alarmValue": 219.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689737572888
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 219.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689737572888
+      },
+      {
+        "alarmType": 6,
+        "alarmValue": 220.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689737561925
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 220.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689737561923
+      },
+      {
+        "alarmType": 6,
+        "alarmValue": 219.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689736537043
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 219.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689736537043
+      },
+      {
+        "alarmType": 6,
+        "alarmValue": 219.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689736527122
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 219.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689736527122
+      },
+      {
+        "alarmType": 6,
+        "alarmValue": 219.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689736519417
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 219.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689736519415
+      },
+      {
+        "alarmType": 5,
+        "alarmValue": 0.113,
+        "isAlarm": true,
+        "loopId": 1,
+        "timeStamp": 1689732610907
+      },
+      {
+        "alarmType": 6,
+        "alarmValue": 219.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689732610907
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 219.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689732610907
+      },
+      {
+        "alarmType": 5,
+        "alarmValue": 0.116,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689732598801
+      },
+      {
+        "alarmType": 6,
+        "alarmValue": 219.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689732598801
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 219.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689732598801
+      },
+      {
+        "alarmType": 6,
+        "alarmValue": 219.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689732590017
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 219.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689732590017
+      },
+      {
+        "alarmType": 5,
+        "alarmValue": 0.113,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689732590014
+      },
+      {
+        "alarmType": 6,
+        "alarmValue": 220.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689666310694
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 220.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689666310694
+      },
+      {
+        "alarmType": 6,
+        "alarmValue": 221.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689666300778
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 221.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689666300778
+      },
+      {
+        "alarmType": 6,
+        "alarmValue": 221.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689666291971
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 221.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689666291969
+      },
+      {
+        "alarmType": 6,
+        "alarmValue": 221.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689663784305
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 221.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689663784305
+      },
+      {
+        "alarmType": 6,
+        "alarmValue": 220.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689663773290
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 220.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689663773290
+      },
+      {
+        "alarmType": 6,
+        "alarmValue": 220.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689663765619
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 220.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689663765616
+      },
+      {
+        "alarmType": 6,
+        "alarmValue": 220.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689662668068
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 220.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689662668068
+      },
+      {
+        "alarmType": 6,
+        "alarmValue": 220.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689662657136
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 220.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689662657136
+      },
+      {
+        "alarmType": 6,
+        "alarmValue": 220.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689662646113
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 220.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689662646110
+      },
+      {
+        "alarmType": 5,
+        "alarmValue": 0.055,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689586616895
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 222.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689586616895
+      },
+      {
+        "alarmType": 5,
+        "alarmValue": 0.053,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689586609198
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 222.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689586609198
+      },
+      {
+        "alarmType": 5,
+        "alarmValue": 0.058,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689586601470
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 222.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689586601470
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 222.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689586587184
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 222.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689586579491
+      },
+      {
+        "alarmType": 5,
+        "alarmValue": 0.049,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689586572871
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 221.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689586572871
+      },
+      {
+        "alarmType": 5,
+        "alarmValue": 0.05,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689586562974
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 222.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689586562974
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 222.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689586550885
+      },
+      {
+        "alarmType": 5,
+        "alarmValue": 0.056,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689586249457
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 222.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689586249457
+      },
+      {
+        "alarmType": 5,
+        "alarmValue": 0.052,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689586239541
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 222.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689586239541
+      },
+      {
+        "alarmType": 5,
+        "alarmValue": 0.051,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689586232933
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 221.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689586232933
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 222.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689586223029
+      },
+      {
+        "alarmType": 5,
+        "alarmValue": 0.05,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689586215343
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 221.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689586215343
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 222.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689586202113
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 221.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689586194419
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 224.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689586186730
+      },
+      {
+        "alarmType": 5,
+        "alarmValue": 0.057,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689586110793
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 224.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689586110793
+      },
+      {
+        "alarmType": 5,
+        "alarmValue": 0.059,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689586098681
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 224.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689586098681
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 224.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689586092094
+      },
+      {
+        "alarmType": 5,
+        "alarmValue": 0.054,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689586092093
+      },
+      {
+        "alarmType": 5,
+        "alarmValue": 0.056,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689584781864
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 222.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689584781864
+      },
+      {
+        "alarmType": 5,
+        "alarmValue": 0.057,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689584772066
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 221.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689584772066
+      },
+      {
+        "alarmType": 5,
+        "alarmValue": 0.054,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689584762156
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 221.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689584762156
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 221.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689584746764
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 221.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689584736876
+      },
+      {
+        "alarmType": 5,
+        "alarmValue": 0.051,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689579977210
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 220.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689579977210
+      },
+      {
+        "alarmType": 5,
+        "alarmValue": 0.055,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689579968499
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 220.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689579968499
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 220.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689579958612
+      },
+      {
+        "alarmType": 5,
+        "alarmValue": 0.056,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689579958611
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 222.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689325880753
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 222.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689325868591
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 222.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689325858753
+      },
+      {
+        "alarmType": 5,
+        "alarmValue": 0.055,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689325466039
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 223.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689325466039
+      },
+      {
+        "alarmType": 5,
+        "alarmValue": 0.053,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689325455007
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 222.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689325455007
+      },
+      {
+        "alarmType": 5,
+        "alarmValue": 0.053,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689325447275
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 222.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689325447275
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 222.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689325437398
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 222.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689239481379
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 222.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689239471569
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 222.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689239461655
+      },
+      {
+        "alarmType": 5,
+        "alarmValue": 0.06,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689239052051
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 222.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689239052051
+      },
+      {
+        "alarmType": 5,
+        "alarmValue": 0.055,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689239044363
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 222.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689239044363
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 221.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689239033421
+      },
+      {
+        "alarmType": 5,
+        "alarmValue": 0.055,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689239033398
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 219.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689153078016
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 220.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689153068190
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 220.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689153061578
+      },
+      {
+        "alarmType": 5,
+        "alarmValue": 0.05,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689152990066
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 219.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689152990066
+      },
+      {
+        "alarmType": 5,
+        "alarmValue": 0.053,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689152981260
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 219.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689152981260
+      },
+      {
+        "alarmType": 5,
+        "alarmValue": 0.051,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689152972457
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 219.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689152972457
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 219.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689152920746
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 219.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689152911937
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 219.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689152903152
+      },
+      {
+        "alarmType": 5,
+        "alarmValue": 0.05,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689152894250
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 220.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689152894250
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 219.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689152861335
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 219.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689152851409
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 219.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689152840429
+      },
+      {
+        "alarmType": 5,
+        "alarmValue": 0.052,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689152812922
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 219.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689152812922
+      },
+      {
+        "alarmType": 5,
+        "alarmValue": 0.052,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689152801917
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 219.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689152801917
+      },
+      {
+        "alarmType": 5,
+        "alarmValue": 0.051,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689152795319
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 219.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689152795319
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 219.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689152787618
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 219.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689152781013
+      },
+      {
+        "alarmType": 5,
+        "alarmValue": 0.05,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689152767818
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 219.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689152767818
+      },
+      {
+        "alarmType": 5,
+        "alarmValue": 0.054,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689152761187
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 220.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689152761187
+      },
+      {
+        "alarmType": 5,
+        "alarmValue": 0.05,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689152751301
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 219.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689152751301
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 219.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689152741281
+      },
+      {
+        "alarmType": 5,
+        "alarmValue": 0.05,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689152736980
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 219.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689152736980
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 219.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689152713818
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 219.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689152703981
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 219.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689152694086
+      },
+      {
+        "alarmType": 5,
+        "alarmValue": 0.051,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689152678664
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 219.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689152678664
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 219.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689152658867
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 219.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689152647853
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 219.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689152641260
+      },
+      {
+        "alarmType": 5,
+        "alarmValue": 0.057,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689146604164
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 218.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689146604164
+      },
+      {
+        "alarmType": 5,
+        "alarmValue": 0.055,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689146596448
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 218.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689146596448
+      },
+      {
+        "alarmType": 5,
+        "alarmValue": 0.056,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689146588655
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 218.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689146588655
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 218.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689146583148
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 218.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689146572225
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 218.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689146561239
+      },
+      {
+        "alarmType": 5,
+        "alarmValue": 0.051,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689146428114
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 218.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689146428114
+      },
+      {
+        "alarmType": 5,
+        "alarmValue": 0.056,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689146420399
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 218.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689146420399
+      },
+      {
+        "alarmType": 5,
+        "alarmValue": 0.056,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689146413140
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 218.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689146413140
+      },
+      {
+        "alarmType": 5,
+        "alarmValue": 0.051,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689146369783
+      },
+      {
+        "alarmType": 5,
+        "alarmValue": 0.051,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689146358766
+      },
+      {
+        "alarmType": 5,
+        "alarmValue": 0.06,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689146347764
+      },
+      {
+        "alarmType": 5,
+        "alarmValue": 0.058,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689146313646
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 218.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689146313646
+      },
+      {
+        "alarmType": 5,
+        "alarmValue": 0.055,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689146305964
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 218.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689146305964
+      },
+      {
+        "alarmType": 5,
+        "alarmValue": 0.055,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689146294954
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 218.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689146294954
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 218.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689146275142
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 218.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689146267435
+      },
+      {
+        "alarmType": 7,
+        "alarmValue": 217.0,
+        "isAlarm": false,
+        "loopId": 1,
+        "timeStamp": 1689146259748
+      }
+    ],
+    "dataType": 2,
+    "name": "upDeviceAlarm"
+  }
+}
